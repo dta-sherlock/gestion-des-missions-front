@@ -1,0 +1,1 @@
+export const PATH_AJOUT_MISSION: string = "mission/ajout";
