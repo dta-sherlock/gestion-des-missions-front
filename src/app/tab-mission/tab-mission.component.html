@@ -17,17 +17,30 @@
     </thead>
 
     <tbody>
-      <!-- TODO ngFor -->
       <!-- Remplissage du tableau -->
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let mission of listeMissions">
+        <td>{{mission.dateDebut | date:'dd/MM/yyyy'}}</td>
+        <td>{{mission.dateFin | date:'dd/MM/yyyy'}}</td>
+        <td>{{mission.nature.nom}}</td>
+        <td>{{mission.villeDeDepart}}</td>
+        <td>{{mission.villeDArrivee}}</td>
+        <td>{{mission.transport}}</td>
+        <td>{{mission.statut}}</td>
+        <td>
+          <div class="row">
+            <div class="col-6">
+              <a href="#" (click)="suppressionMission(mission)"><i class="fas fa-trash-alt"></i></a>
+            </div>
+            <!-- Si le statut est 'Initiale' ou 'Rejetée' on affiche
+              une icone de modification -->
+              <!-- TODO Ajout du test si 'ABSENCE' -->
+            <div class="col-6">
+              <div *ngIf="mission.statut==='Initial' || mission.statut==='Rejetée'">
+                <a href="#" (click)="modifierMission(mission)"><i class="fas fa-edit"></i></a>
+              </div>
+            </div>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
