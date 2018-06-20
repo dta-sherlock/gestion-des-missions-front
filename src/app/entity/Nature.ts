@@ -9,7 +9,7 @@ export class Nature{
     depassementFrais:boolean;
 
 
-    constructor(_nom:string, _facturee:boolean, _versementPrime:boolean,_tjm:number, _prime:number,_plafond:number,_depassementFrais){
+    constructor(_nom:string, _facturee:boolean, _versementPrime:boolean,_tjm:number, _prime:number,_plafond:number,_depassementFrais:boolean){
         this.nom=_nom;
         this.facturee=_facturee;
         this.versementPrime=_versementPrime;
