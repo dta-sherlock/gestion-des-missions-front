@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PATH_MISSIONS } from '../constantes';
-import { Mission, Transport, Statut } from '../Entity/Mission';
+import { Mission, Transport, Statut } from '../entity/Mission';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Nature } from '../Entity/Nature';
+import { Nature } from '../entity/Nature';
 import  FormulaireMissionsServiceService  from '../services/formulaireMissionService/formulaire-missions-service.service';
 import { isGoodDateDebutValidator } from '../Validator/Mission/MissionValidator';
 
