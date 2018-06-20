@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule} from "@angular/router";
+import {RouterModule} from "@angular/router/";
 import { AppComponent } from './app.component';
 
 import {ROUTES} from './app.routes';
@@ -11,6 +11,7 @@ import { RecupMissionsService } from './services/recupMissionService/recup-missi
 import { FormulaireMissionsComponent } from './formulaire-missions/formulaire-missions.component';
 import  FormulaireMissionsServiceService  from './services/formulaireMissionService/formulaire-missions-service.service';
 import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -24,11 +25,15 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    RouterModule,
   ],
   providers: [
     RecupMissionsService,
-    FormulaireMissionsServiceService],
+    FormulaireMissionsServiceService,
+    RouterModule,
+    HttpClientModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

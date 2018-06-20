@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormulaireMissionsComponent } from './formulaire-missions.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import FormulaireMissionsServiceService from '../services/formulaireMissionService/formulaire-missions-service.service';
 
 describe('FormulaireMissionsComponent', () => {
   let component: FormulaireMissionsComponent;
@@ -8,7 +10,9 @@ describe('FormulaireMissionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormulaireMissionsComponent ]
+      declarations: [ FormulaireMissionsComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [FormulaireMissionsServiceService]
     })
     .compileComponents();
   }));
