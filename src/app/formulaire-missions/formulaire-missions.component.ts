@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Nature } from '../entity/Nature';
 import { PATH_MISSIONS } from '../constantes';
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Nature } from '../entity/Nature';
 import  FormulaireMissionsServiceService  from '../services/formulaireMissionService/formulaire-missions-service.service';
 import { isGoodDateDebutValidator } from '../Validator/Mission/MissionValidator';
 
@@ -63,7 +63,6 @@ export class FormulaireMissionsComponent implements OnInit {
 
 
   ngOnInit() {
-    let nature = new Nature("Conseil", false, false, 0, 0)
     let today = new Date();
     let now= new Date();
     now.setDate(today.getDate() +1);

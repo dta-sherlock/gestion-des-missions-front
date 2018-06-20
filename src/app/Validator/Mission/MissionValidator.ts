@@ -27,23 +27,22 @@ function isWeekEnd(control :FormControl){
     }
 }
 
-/*
-function isHoliday(control:FormControl){
+
+
+/*  TODO :
+
+
+function isHoliday(control:FormControl): boolean{
 
 }
 
 
 function isAWeekByPlane(control :FormControl):boolean {
-    let day=new Date();
-    let today=((day.getFullYear()+"-"+day.getMonth()+"-"+day.getDay()))
-     if (control.value <= today) {
-        return false;
-    }
-    else{
-        return true;
-    }
+    
 }
 */
+
+
 export function isGoodDateDebutValidator(control: FormControl) {
     console.log("le control est ====",control,isWeekEnd(control),  isAfterToday(control));
     if (isAfterToday(control) && isWeekEnd(control)) {
