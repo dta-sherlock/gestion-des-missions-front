@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PATH_MISSIONS } from '../constantes';
 import { Mission, Transport, Statut } from '../Entity/Mission';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Nature } from '../Entity/Nature';
+import  FormulaireMissionsServiceService  from '../services/formulaireMissionService/formulaire-missions-service.service';
+import { isGoodDateDebutValidator } from '../Validator/Mission/MissionValidator';
 
 @Component({
   selector: 'app-formulaire-missions',
@@ -24,14 +26,14 @@ export class FormulaireMissionsComponent implements OnInit {
 
   missionForm: FormGroup;
 
-  constructor(fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
+  constructor(fb: FormBuilder, private router: Router, private route: ActivatedRoute, private missionService:FormulaireMissionsServiceService) {
 
-      this.dateDebutCtrl=fb.control('');
-      this.dateFinCtrl=fb.control('');
-      this.natureCtrl=fb.control('');
-      this.villeDArriveeCtrl=fb.control('');
-      this.villeDeDepartCtrl=fb.control('');
-      this.transportCtrl=fb.control('');
+      this.dateDebutCtrl=fb.control('',[Validators.required, isGoodDateDebutValidator]);
+      this.dateFinCtrl=fb.control('',[Validators.required]);
+      this.natureCtrl=fb.control('',[Validators.required]);
+      this.villeDArriveeCtrl=fb.control('',[Validators.required]);
+      this.villeDeDepartCtrl=fb.control('',[Validators.required]);
+      this.transportCtrl=fb.control('',[Validators.required]);
       this.primeCtrl=fb.control('');
 
     this.missionForm = fb.group({
@@ -56,14 +58,19 @@ export class FormulaireMissionsComponent implements OnInit {
 
   handleSubmit() {
     console.log('SUBMIT', this.missionForm.value);
+    this.missionService.postMission(new Mission(this.mission.dateDebut,this.mission.dateFin,this.mission.nature,this.mission.villeDeDepart,this.mission.villeDArrivee,this.mission.transport,this.mission.prime, Statut.INITIAL)).subscribe();
   }
 
+
   ngOnInit() {
-    let today = new Date();
-    today.setDate(today.getDate() + 7);
     let nature = new Nature("Conseil", false, false, 0, 0)
+    let today = new Date();
+    let now= new Date();
+    now.setDate(today.getDate() +1);
+    let tomorrow=now; 
+    today.setDate(today.getDate() + 8);
     let plusUneSemaine = today;
-    this.mission = new Mission(new Date(), plusUneSemaine, nature,"Ville de Depart", "Ville d'arrivée", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
+    this.mission = new Mission(tomorrow, plusUneSemaine, null,"Ville de Depart", "Ville d'arrivée", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
   }
 
 }

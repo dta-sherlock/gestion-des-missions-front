@@ -5,14 +5,18 @@
       <label class="col-5">Date de début : </label>
 
       <!-- REPARER ERREUR DU AUX CHANGEMENT FORMATS DATES-->
-      <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="mission.dateDebut=$event" [ngModel]="mission.dateDebut | date:'yyyy-MM-dd'" >
+      <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="mission.dateDebut=$event"
+        [ngModel]="mission.dateDebut | date:'yyyy-MM-dd'">
+      <div *ngIf="dateDebutCtrl.dirty && dateDebutCtrl.hasError('isGoodDateDebut')">
+        <p>La date n'est pas valide</p>
+      </div>
     </div>
     <div class="row">
       <label class="col-5">Date de fin : </label>
-      <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="mission.dateFin=$event" [ngModel]="mission.dateFin | date:'yyyy-MM-dd'" >
+      <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="mission.dateFin=$event"
+        [ngModel]="mission.dateFin | date:'yyyy-MM-dd'">
     </div>
-
-     <!-- REPARER ERREUR DU AUX CHANGEMENT FORMATS DATES-->
+    <!-- REPARER ERREUR DU AUX CHANGEMENT FORMATS DATES-->
 
     <div class="row">
       <label class="col-5">Nature : </label>
@@ -34,8 +38,8 @@
       <label class="col-5">Transport : </label>
       <select formControlName="transport" class="form-control col-7" [(ngModel)]="mission.transport">
         *ngFor="let item of transports">
-          <option *ngFor="let item of transports"> {{item}}</option>
-        
+        <option *ngFor="let item of transports"> {{item}}</option>
+
       </select>
     </div>
     <div class="row">
@@ -44,7 +48,7 @@
     </div>
     <div class="row">
       <button class="btn btn-danger col-3 offset-5" (click)="navigateToMissions()">Annuler</button>
-      <button class="btn btn-success col-3" type="submit">Valider</button>
+      <button class="btn btn-success col-3" type="submit" [disabled]="missionForm.invalid">Valider</button>
     </div>
   </form>
 </div>
