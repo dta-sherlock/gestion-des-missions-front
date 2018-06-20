@@ -18,13 +18,30 @@
 
     <tbody>
       <!-- Remplissage du tableau -->
+      <!-- Si une mission est une 'absence' alors on 
+      n'affiche pas le départ/arrivée/transport -->
       <tr *ngFor="let mission of listeMissions">
         <td>{{mission.dateDebut | date:'dd/MM/yyyy'}}</td>
         <td>{{mission.dateFin | date:'dd/MM/yyyy'}}</td>
         <td>{{mission.nature.nom}}</td>
-        <td>{{mission.villeDeDepart}}</td>
-        <td>{{mission.villeDArrivee}}</td>
-        <td>{{mission.transport}}</td>
+        <td *ngIf="mission.nature.nom==='Absence'; else showDepart">
+          -
+        </td>
+        <ng-template #showDepart>
+          <td>{{mission.villeDeDepart}}</td>
+        </ng-template>
+        <td *ngIf="mission.nature.nom==='Absence'; else showArrivee">
+          -
+        </td>
+        <ng-template #showArrivee>
+            <td>{{mission.villeDArrivee}}</td>
+        </ng-template>
+        <td *ngIf="mission.nature.nom==='Absence'; else showTransport">
+          -
+        </td>
+        <ng-template #showTransport>
+            <td>{{mission.transport}}</td>
+        </ng-template>
         <td>{{mission.statut}}</td>
         <td>
           <div class="row">
@@ -37,6 +54,9 @@
             <div class="col-6">
               <div *ngIf="mission.statut==='Initial' || mission.statut==='Rejetée'">
                 <a href="#" (click)="modifierMission(mission)"><i class="fas fa-edit"></i></a>
+              </div>
+              <div *ngIf="mission.nature.nom==='Absence'">
+                <a href="#" (click)="goToAbsence(mission)"><i class="fas fa-eye"></i></a>
               </div>
             </div>
           </div>

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Router } from '@angular/router'
-import { PATH_AJOUT_MISSION } from '../constantes';
 import { RecupMissionsService } from '../services/recup-missions.service';
 import { Mission } from '../entity/Mission';
 
@@ -33,6 +31,11 @@ export class TabMissionComponent implements OnInit {
   // de cette mission
   modifierMission(mission: Mission){
     //this.router.navigate([PATH_AJOUT_MISSION], mission.id);
+  }
+
+  // Si l'utilisateur choisit d'afficher une absence
+  goToAbsence(mission: Mission){
+    //TODO Renvoi vers l'application Gestion-des-absences
   }
 
   ngOnInit() {
