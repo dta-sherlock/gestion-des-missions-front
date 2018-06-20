@@ -11,13 +11,17 @@ import { RecupMissionsService } from './services/recupMissionService/recup-missi
 import { FormulaireMissionsComponent } from './formulaire-missions/formulaire-missions.component';
 import  FormulaireMissionsServiceService  from './services/formulaireMissionService/formulaire-missions-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NatureTableauComponent } from './nature-tableau/nature-tableau.component';
+import { RecupNatureService } from './services/recupNatureService/recup-nature.service';
+import { FormulaireNatureServiceService } from './services/formulaireNatureService/formulaire-nature-service.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TabMissionComponent,
-    FormulaireMissionsComponent
+    FormulaireMissionsComponent,
+    NatureTableauComponent,
   ],
   imports: [
     HttpClientModule,
@@ -27,6 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
+    FormulaireNatureServiceService,
+    RecupNatureService,
     RecupMissionsService,
     FormulaireMissionsServiceService],
   bootstrap: [AppComponent]
