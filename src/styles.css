@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+#navbarNav li {
+  font-size: 15px;
+}
+
+#div-logo img {
+    transform: translateY(50%);
+}
