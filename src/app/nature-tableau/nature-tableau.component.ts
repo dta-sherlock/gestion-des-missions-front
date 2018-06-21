@@ -39,7 +39,7 @@ export class NatureTableauComponent implements OnInit {
 
   handleSubmit() {
     console.log('SUBMIT', this.natureForm.value);
-    this.formulaireNatureService.postNature(new Nature(this.nature.nom, this.nature.facturee, this.nature.versementPrime, null, null, null, null)).subscribe();
+    //this.formulaireNatureService.postNature(new Nature(this.nature.nom, this.nature.facturee, this.nature.versementPrime, null, null, null, null)).subscribe();
   }
 
 
@@ -58,8 +58,8 @@ export class NatureTableauComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nature = new Nature("", false, false, 0, 0,160,false);
-    this.listeNatures = this.natureService.getNature();
+    //this.nature = new Nature("", false, false, 0, 0,160,false);
+    //this.listeNatures = this.natureService.getNature();
   }
 
 

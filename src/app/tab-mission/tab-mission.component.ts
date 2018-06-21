@@ -3,6 +3,7 @@ import { RecupMissionsService } from '../services/recupMissionService/recup-miss
 import { Mission } from '../entity/Mission';
 import { PATH_AJOUT_MISSIONS, PATH_MISSIONS } from '../constantes';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab-mission',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class TabMissionComponent implements OnInit {
 
-  private listeMissions: Array<Mission>;
+  private listeMissions: Observable<Array<Mission>>;
 
   constructor(private router: Router, private missionService: RecupMissionsService) { }
 
@@ -23,9 +24,12 @@ export class TabMissionComponent implements OnInit {
 
   // Supprimer une mission
   suppressionMission(mission: Mission){
-    //TODO Suppression via http.delete
-    let index = this.listeMissions.indexOf(mission);
-    this.listeMissions.splice(index, 1);
+    this.missionService.supprimerMission(mission).subscribe();
+    
+    this.listeMissions.subscribe(val => {
+      let index = val.indexOf(mission);
+      val.splice(index, 1);
+    });
     this.router.navigate([PATH_MISSIONS]);
   }
 

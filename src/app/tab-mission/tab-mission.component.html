@@ -20,7 +20,7 @@
         <!-- Si une mission est une 'absence' alors on 
       n'affiche pas le départ/arrivée/transport 
       et l'icone de suppression -->
-        <tr *ngFor="let mission of listeMissions">
+        <tr *ngFor="let mission of listeMissions | async">
           <td scope="row">{{mission.dateDebut | date:'dd/MM/yyyy'}}</td>
           <td>{{mission.dateFin | date:'dd/MM/yyyy'}}</td>
           <td>{{mission.nature.nom}}</td>
@@ -54,7 +54,7 @@
               une icone de modification -->
               <!-- TODO Ajout du test si 'ABSENCE' -->
               <div class="col-6">
-                <div *ngIf="mission.statut==='Initial' || mission.statut==='Rejetée'">
+                <div *ngIf="mission.statut==='INITIALE' || mission.statut==='REJETEE'">
                   <button type="button" class="btn btn btn-primary" (click)="modifierMission(mission)">
                     <i class="fas fa-edit"></i>
                   </button>

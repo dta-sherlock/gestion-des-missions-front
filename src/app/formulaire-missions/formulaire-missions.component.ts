@@ -57,8 +57,9 @@ export class FormulaireMissionsComponent implements OnInit {
    transports=Object.keys(Transport).map(k=>Transport[k]);
 
   handleSubmit() {
-    console.log('SUBMIT', this.missionForm.value);
-    this.missionService.postMission(new Mission(this.mission.dateDebut,this.mission.dateFin,this.mission.nature,this.mission.villeDeDepart,this.mission.villeDArrivee,this.mission.transport,this.mission.prime, Statut.INITIAL)).subscribe();
+    let nature: Nature = new Nature("test", false, false, 2, 100, true, new Date(), 15, new Date());
+    console.log('SUBMIT', this.mission.dateDebut,this.mission.dateFin,nature,this.mission.villeDeDepart,this.mission.villeDArrivee,this.mission.transport, 0, Statut.INITIAL);
+    this.missionService.postMission(new Mission(this.mission.dateDebut,this.mission.dateFin,nature,this.mission.villeDeDepart,this.mission.villeDArrivee,this.mission.transport, 0, Statut.INITIAL)).subscribe();
   }
 
 
@@ -69,7 +70,7 @@ export class FormulaireMissionsComponent implements OnInit {
     let tomorrow=now; 
     today.setDate(today.getDate() + 8);
     let plusUneSemaine = today;
-    this.mission = new Mission(tomorrow, plusUneSemaine, null,"Ville de Depart", "Ville d'arrivée", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
+    this.mission = new Mission(tomorrow, plusUneSemaine, null,"", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
   }
 
 }
