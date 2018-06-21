@@ -60,8 +60,14 @@ export class FormulaireMissionsComponent implements OnInit {
   transports = Object.keys(Transport).map(k => Transport[k]);
 
   handleSubmit() {
+<<<<<<< HEAD
     console.log('SUBMIT', this.missionForm.value);
     this.missionService.postMission(new Mission(this.mission.dateDebut, this.mission.dateFin, this.mission.nature, this.mission.villeDeDepart, this.mission.villeDArrivee, this.mission.transport, this.mission.prime, Statut.INITIAL)).subscribe();
+=======
+    let nature: Nature = new Nature("test", false, false, 2, 100, true, new Date(), 15, new Date());
+    console.log('SUBMIT', this.mission.dateDebut,this.mission.dateFin,nature,this.mission.villeDeDepart,this.mission.villeDArrivee,this.mission.transport, 0, Statut.INITIAL);
+    this.missionService.postMission(new Mission(this.mission.dateDebut,this.mission.dateFin,nature,this.mission.villeDeDepart,this.mission.villeDArrivee,this.mission.transport, 0, Statut.INITIAL)).subscribe();
+>>>>>>> origin/US16_tableau_mission
   }
 
 
@@ -74,6 +80,7 @@ export class FormulaireMissionsComponent implements OnInit {
   }
 
   ngOnInit() {
+<<<<<<< HEAD
 
     //récupere la misson à modifier si il est à modifier 
     //initialise un objet par defaut si il est à ajouter
@@ -92,6 +99,15 @@ export class FormulaireMissionsComponent implements OnInit {
       this.mission.dateDebut=tomorrow;
       this.mission.dateFin=plusUneSemaine;
     }
+=======
+    let today = new Date();
+    let now= new Date();
+    now.setDate(today.getDate() +1);
+    let tomorrow=now; 
+    today.setDate(today.getDate() + 8);
+    let plusUneSemaine = today;
+    this.mission = new Mission(tomorrow, plusUneSemaine, null,"", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
+>>>>>>> origin/US16_tableau_mission
   }
 
 }

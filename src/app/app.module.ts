@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule} from "@angular/router";
+import {RouterModule} from "@angular/router/";
 import { AppComponent } from './app.component';
 
 import {ROUTES} from './app.routes';
@@ -16,6 +16,7 @@ import { RecupNatureService } from './services/recupNatureService/recup-nature.s
 import { FormulaireNatureServiceService } from './services/formulaireNatureService/formulaire-nature-service.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,13 +29,17 @@ import { FormulaireNatureServiceService } from './services/formulaireNatureServi
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    RouterModule,
   ],
   providers: [
     FormulaireNatureServiceService,
     RecupNatureService,
     RecupMissionsService,
-    FormulaireMissionsServiceService],
+    FormulaireMissionsServiceService,
+    RouterModule,
+    HttpClientModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

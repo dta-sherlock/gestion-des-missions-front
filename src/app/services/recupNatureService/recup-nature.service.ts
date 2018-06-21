@@ -8,7 +8,7 @@ export class RecupNatureService {
 
   getNature(){
     // Création jeu de données pour test
-    let listeTest = new Array<Nature>();
+    /*let listeTest = new Array<Nature>();
     let natureTest: Nature = new Nature("test", false, false, 0, 0,160,false);
     let natureTest2: Nature = new Nature("test2", true, false, 5, 586,1500,true);
     let natureTest3: Nature = new Nature("test4", false, true, 18, 1000,150,true);
@@ -22,6 +22,6 @@ export class RecupNatureService {
     listeTest.push(natureTest4);
     
 
-    return listeTest;
+    return listeTest;*/
   }
 }

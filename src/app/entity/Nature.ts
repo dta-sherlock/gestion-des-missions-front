@@ -2,22 +2,26 @@ export class Nature{
 
     id:number;
     nom:string;
-    facturee:boolean;
-    versementPrime:boolean;
-    tjm:number;
-    prime:number;
+    facturation:boolean;
+    prime:boolean;
+    pourcentage:number;
     plafond:number;
-    depassementFrais:boolean;
+    plafondDepassable:boolean;
+    debutValidite:Date;
+    finValidite:Date;
+    tjm:number;
 
 
-    constructor(_nom:string, _facturee:boolean, _versementPrime:boolean,_tjm:number, _prime:number,_plafond:number,_depassementFrais){
+    constructor(_nom:string, facturation:boolean, _prime:boolean,_pourcentage:number,_plafond:number,_plafondDepassable:boolean, _debutValidite:Date, _tjm:number, _finValidite?:Date){
         this.nom=_nom;
-        this.facturee=_facturee;
-        this.versementPrime=_versementPrime;
-        this.tjm=_tjm;
+        this.facturation=facturation;
         this.prime=_prime;
+        this.pourcentage=_pourcentage;
         this.plafond=_plafond;
-        this.depassementFrais=_depassementFrais;
+        this.plafondDepassable=_plafondDepassable;
+        this.debutValidite=_debutValidite;
+        this.finValidite=_finValidite;
+        this.tjm=_tjm;
     }
 
 }

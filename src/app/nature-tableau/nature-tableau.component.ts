@@ -45,13 +45,13 @@ export class NatureTableauComponent implements OnInit {
 
   handleSubmit() {
     console.log('SUBMIT', this.natureForm.value);
-    this.formulaireNatureService.postNature(new Nature(this.nature.nom, this.nature.facturee, this.nature.versementPrime, null, null, null, null)).subscribe();
+    //this.formulaireNatureService.postNature(new Nature(this.nature.nom, this.nature.facturee, this.nature.versementPrime, null, null, null, null)).subscribe();
   }
 
 
   ajouterNature() {
     console.log('nature : ', this.nature);
-    this.formulaireNatureService.post(new Nature(this.nature.nom, this.nature.facturee, this.nature.versementPrime, this.nature.tjm, this.nature.prime, this.nature.plafond, this.nature.depassementFrais)).subscribe();
+    this.formulaireNatureService.post(new Nature(this.nature.nom, this.nature.facturation, this.nature.prime, this.nature.pourcentage, this.nature.plafond, this.nature.plafondDepassable, this.nature.debutValidite,this.nature.tjm,this.nature.finValidite)).subscribe();
   }
 
   // Supprimer une nature
@@ -62,12 +62,12 @@ export class NatureTableauComponent implements OnInit {
 
   editerNature(nature: Nature) {
   console.log('Update', nature);
-    this.formulaireNatureService.put(new Nature(nature.nom, nature.facturee, nature.versementPrime,nature.tjm, nature.prime, nature.plafond, nature.depassementFrais),nature.id).subscribe()
+    this.formulaireNatureService.put(new Nature(this.nature.nom, this.nature.facturation, this.nature.prime, this.nature.pourcentage, this.nature.plafond, this.nature.plafondDepassable, this.nature.debutValidite,this.nature.tjm,this.nature.finValidite),nature.id).subscribe()
   }
 
   ngOnInit() {
-    this.nature = new Nature("", false, false, 0, 0, 0,false);
-    this.listeNatures = this.natureService.getNature();
+    //this.nature = new Nature("", false, false, 0, 0,160,false);
+    //this.listeNatures = this.natureService.getNature();
   }
 
   recup(index:number){
