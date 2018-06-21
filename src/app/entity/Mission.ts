@@ -26,7 +26,8 @@ export class Mission{
    public prime:number;
    public statut:Statut;
 
-    constructor(_dateDeDebut:Date, _dateDeFin:Date, _nature:Nature, _villeDeDepart:string, _villeDArivee:string, _transport:Transport, _prime:number, _statut:Statut){
+    constructor(id:number,_dateDeDebut:Date, _dateDeFin:Date, _nature:Nature, _villeDeDepart:string, _villeDArivee:string, _transport:Transport, _prime:number, _statut:Statut){
+        this.id = id;
         this.dateDebut=_dateDeDebut;
         this.dateFin=_dateDeFin;
         this.nature=_nature;
