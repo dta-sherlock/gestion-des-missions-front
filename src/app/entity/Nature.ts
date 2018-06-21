@@ -1,5 +1,6 @@
 export class Nature{
 
+    id:number;
     nom:string;
     facturee:boolean;
     versementPrime:boolean;

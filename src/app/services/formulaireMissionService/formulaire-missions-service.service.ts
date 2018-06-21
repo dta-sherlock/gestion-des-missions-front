@@ -17,4 +17,10 @@ export default class FormulaireMissionsServiceService {
     return <Observable<Mission>>this.http.post(`${API_BASE_URL}${API_MISSION}`, misson);
   }
 
+  getMissionById(id:number): Observable<Mission>{
+    
+    return <Observable<Mission>>this.http.get(`${API_BASE_URL}${API_MISSION}/${id}`);
+    
+  }
+
 }

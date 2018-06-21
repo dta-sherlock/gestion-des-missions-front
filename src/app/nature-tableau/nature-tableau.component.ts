@@ -19,6 +19,8 @@ export class NatureTableauComponent implements OnInit {
   nomCtrl: FormControl;
   factureeCtrl: FormControl;
   versementPrimeCtrl: FormControl;
+  tjmCtrl: FormControl;
+  primeCtrl: FormControl;
 
   natureForm: FormGroup;
   constructor(fb: FormBuilder, private router: Router, private route: ActivatedRoute, private natureService: RecupNatureService, private formulaireNatureService: FormulaireNatureServiceService) {
@@ -26,11 +28,15 @@ export class NatureTableauComponent implements OnInit {
     this.nomCtrl = fb.control('', [Validators.required]);
     this.factureeCtrl = fb.control('', [Validators.required]);
     this.versementPrimeCtrl = fb.control('', [Validators.required]);
+    this.tjmCtrl = fb.control('', [Validators.required]);
+    this.primeCtrl = fb.control('', [Validators.required]);
 
     this.natureForm = fb.group({
       nom: this.nomCtrl,
       facturee: this.factureeCtrl,
-      versementPrime: this.versementPrimeCtrl
+      versementPrime: this.versementPrimeCtrl,
+      tjm: this.tjmCtrl,
+      prime: this.primeCtrl
     });
   }
   navigateToMissions() {
@@ -43,24 +49,29 @@ export class NatureTableauComponent implements OnInit {
   }
 
 
-  ajoutNature() {
-
+  ajouterNature() {
+    console.log('nature : ', this.nature);
+    this.formulaireNatureService.post(new Nature(this.nature.nom, this.nature.facturee, this.nature.versementPrime, this.nature.tjm, this.nature.prime, this.nature.plafond, this.nature.depassementFrais)).subscribe();
   }
 
   // Supprimer une nature
   suppressionNature(nature: Nature) {
-
+    console.log('Delete', nature);
+    this.formulaireNatureService.delete(nature).subscribe();
   }
 
-
-  modifierNature(nature: Nature) {
-
+  editerNature(nature: Nature) {
+  console.log('Update', nature);
+    this.formulaireNatureService.put(new Nature(nature.nom, nature.facturee, nature.versementPrime,nature.tjm, nature.prime, nature.plafond, nature.depassementFrais),nature.id).subscribe()
   }
 
   ngOnInit() {
-    this.nature = new Nature("", false, false, 0, 0,160,false);
+    this.nature = new Nature("", false, false, 0, 0, 0,false);
     this.listeNatures = this.natureService.getNature();
   }
 
+  recup(index:number){
+    this.nature = this.listeNatures[index];
+  }
 
 }
