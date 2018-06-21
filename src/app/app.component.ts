@@ -15,7 +15,11 @@ export class AppComponent implements OnInit{
   constructor(private cookie:CookieService){}
 
   ngOnInit():void{
-    this.cookie.set('test','3');
-    this.cookieValue = this.cookie.get('test');
+    //utilisateur permet d'avoir le nom du cookie.
+    //3 est la valeur indiqué dans le cookie.
+    this.cookie.set('utilisateur','3');
+    //Pour crée un nouveau cookie, il suffit d'en déclarer un autre
+    // Pour récupéré la valeur d'un cookie, il suffit de faire un get du CookieService en précisant le nom.
+    this.cookie.set('name','ronald');
   }
 }

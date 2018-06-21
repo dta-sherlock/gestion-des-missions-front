@@ -17,6 +17,7 @@ export class TableauMissionEnAttenteValidationComponent implements OnInit {
   isAcceptMission(accept:Boolean, mission:Mission):Mission{
     console.log("accept =",accept);
     console.log(Number.parseInt(this.cookie.get('test')));
+    console.log("name =",this.cookie.get('name'))
     if(accept){
       this.listeMissions.indexOf
       mission.statut = Statut.VALIDEE;
