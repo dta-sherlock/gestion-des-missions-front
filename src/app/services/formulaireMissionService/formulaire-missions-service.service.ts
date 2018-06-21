@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Mission } from '../../Entity/Mission';
+import { Mission } from '../../entity/Mission';
 import { Observable } from 'rxjs';
 import { API_BASE_URL, API_MISSION } from '../../constantes';
 
