@@ -1,27 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Nature } from '../../entity/Nature';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { API_BASE_URL, API_NATURE } from '../../constantes';
 
-Injectable()
+@Injectable()
 export class RecupNatureService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getNature(){
-    // Création jeu de données pour test
-    /*let listeTest = new Array<Nature>();
-    let natureTest: Nature = new Nature("test", false, false, 0, 0,160,false);
-    let natureTest2: Nature = new Nature("test2", true, false, 5, 586,1500,true);
-    let natureTest3: Nature = new Nature("test4", false, true, 18, 1000,150,true);
-    let natureTest4: Nature = new Nature("test3", true, true, 0, 100,11000,false);
- 
-    
-
-    listeTest.push(natureTest);
-    listeTest.push(natureTest2);
-    listeTest.push(natureTest3);
-    listeTest.push(natureTest4);
-    
-
-    return listeTest;*/
+  getNature(): Observable<Array<Nature>> {
+    return <Observable<Array<Nature>>>this.http.get(`${API_BASE_URL}${API_NATURE}`);
   }
 }

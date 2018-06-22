@@ -4,8 +4,7 @@
     <div class="row">
       <label class="col-5">Date de début : </label>
 
-      <!-- REPARER ERREUR DU AUX CHANGEMENT FORMATS DATES-->
-      <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="mission.dateDebut=$event"
+      <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="setDateDebutFormated($event)"
         [ngModel]="mission.dateDebut | date:'yyyy-MM-dd'">
       <div *ngIf="dateDebutCtrl.dirty && dateDebutCtrl.hasError('isGoodDateDebut')">
         <p>La date n'est pas valide</p>
@@ -13,17 +12,14 @@
     </div>
     <div class="row">
       <label class="col-5">Date de fin : </label>
-      <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="mission.dateFin=$event"
+      <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="setDateFinFormated($event)"
         [ngModel]="mission.dateFin | date:'yyyy-MM-dd'">
     </div>
-    <!-- REPARER ERREUR DU AUX CHANGEMENT FORMATS DATES-->
-
+    
     <div class="row">
       <label class="col-5">Nature : </label>
       <select formControlName="nature" class="form-control col-7" [(ngModel)]="mission.nature">
-        <option> conseil </option>
-        <option> expertise technique </option>
-        <option> formation </option>
+        <option *ngFor="let nature of listeNatures"> {{nature.nom}} </option>
       </select>
     </div>
     <div class="row">
@@ -37,7 +33,6 @@
     <div class="row">
       <label class="col-5">Transport : </label>
       <select formControlName="transport" class="form-control col-7" [(ngModel)]="mission.transport">
-        *ngFor="let item of transports">
         <option *ngFor="let item of transports"> {{item}}</option>
 
       </select>

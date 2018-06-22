@@ -11,7 +11,12 @@ export default class FormulaireMissionsServiceService {
   constructor(private http: HttpClient) { }
 
   postMission(mission: Mission): Observable<Mission> {
-    return <Observable<Mission>> this.http.post(`${API_BASE_URL}${API_MISSION}/${mission.id}`, mission);
+    return <Observable<Mission>>this.http.post(`${API_BASE_URL}${API_MISSION}`, mission);
+  }
+  
+  getMissionById(id:number): Observable<Mission>{
+    return <Observable<Mission>>this.http.get(`${API_BASE_URL}${API_MISSION}/${id}`);
+    
   }
 
 }

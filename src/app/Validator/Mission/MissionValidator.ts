@@ -37,6 +37,10 @@ function isHoliday(control:FormControl): boolean{
 }
 
 
+function isAlreadyTaken(control:FormControl): boolean{
+
+}
+
 function isAWeekByPlane(control :FormControl):boolean {
     
 }
@@ -44,7 +48,6 @@ function isAWeekByPlane(control :FormControl):boolean {
 
 
 export function isGoodDateDebutValidator(control: FormControl) {
-    console.log("le control est ====",control,isWeekEnd(control),  isAfterToday(control));
     if (isAfterToday(control) && isWeekEnd(control)) {
         return null
     }
