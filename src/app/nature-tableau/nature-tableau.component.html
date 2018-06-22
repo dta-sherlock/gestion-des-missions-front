@@ -19,7 +19,7 @@
       <tr *ngFor="let nature of listeNatures,index as index">
         <td>{{nature.nom | titlecase}}</td>
 
-        <td *ngIf="nature.facturee; else nonFacturee">
+        <td *ngIf="nature.facturation; else nonFacturee">
           Oui
         </td>
         <ng-template #nonFacturee>
@@ -27,7 +27,7 @@
         </ng-template>
 
         <script>console.log(nature.prime);</script>
-        <td *ngIf="nature.versementPrime; else nonPrime">
+        <td *ngIf="nature.prime; else nonPrime">
           Oui
         </td>
         <ng-template #nonPrime>
@@ -36,7 +36,7 @@
 
         <td>{{nature.tjm}}</td>
 
-        <td>{{nature.prime}}</td>
+        <td>{{nature.pourcentage}}</td>
 
         <td>
           <div class="row">
@@ -94,7 +94,9 @@
 
             <div class="row">
               <label class="col-5">Facturée : </label>
-              <select formControlName="facturee" class="form-control col-7" [(ngModel)]="nature.facturee">
+              <select name="facturation" formControlName="facturation" class="form-control col-7"
+                   (ngModelChange)="setFacturation($event)"
+                  [ngModel]="nature.facturation">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
@@ -102,7 +104,7 @@
 
             <div class="row">
               <label class="col-5">Versement prime : </label>
-              <select formControlName="versementPrime" class="form-control col-7" [(ngModel)]="nature.versementPrime">
+              <select formControlName="prime" class="form-control col-7" [(ngModel)]="nature.prime">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
@@ -112,7 +114,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
-          <button class="btn btn-success" type="submit" (click)="ajouterNature()" [disabled]="natureForm.invalid">Valider</button>
+          <button class="btn btn-success" data-dismiss="modal" type="submit" (click)="ajouterNature()" [disabled]="natureForm.invalid">Valider</button>
         </div>
       </div>
     </div>
@@ -135,7 +137,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
-          <button class="btn btn-success" (click)="suppressionNature(nature)">Valider</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="suppressionNature(nature)">Valider</button>
         </div>
       </div>
     </div>
@@ -167,7 +169,7 @@
 
             <div class="row">
               <label class="col-4">Facturée : </label>
-              <select formControlName="facturee" class="form-control col-2" [(ngModel)]="nature.facturee">
+              <select formControlName="facturation" class="form-control col-2" [(ngModel)]="nature.facturation">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
@@ -178,20 +180,20 @@
 
             <div class="row">
               <label class="col-4">Versement prime : </label>
-              <select formControlName="versementPrime" class="form-control col-2" [(ngModel)]="nature.versementPrime">
+              <select formControlName="prime" class="form-control col-2" [(ngModel)]="nature.prime">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
 
-              <label class="col-4">% prime : </label>
-              <input type="text" formControlName="prime" class="form-control col-2" [(ngModel)]="nature.prime">
+              <label class="col-4">% Prime : </label>
+              <input type="text" formControlName="pourcentage" class="form-control col-2" [(ngModel)]="nature.pourcentage">
 
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
-          <button class="btn btn-success" (click)="editerNature(nature)" [disabled]="natureForm.invalid">Valider</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="editerNature(nature)" [disabled]="natureForm.invalid">Valider</button>
         </div>
       </div>
     </div>

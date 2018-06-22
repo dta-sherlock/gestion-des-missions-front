@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Nature } from '../../Entity/Nature';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { API_BASE_URL, API_NATURE} from '../../constantes';
 
-/*TODO : mettre le bon chemin*/
-const API_BASE_URL: string = 'http://localhost:8080/';
-const API_NATURE: string = 'natures';
 @Injectable()
 export class FormulaireNatureServiceService {
 
@@ -18,11 +16,11 @@ export class FormulaireNatureServiceService {
     return this.http.put<Nature>(`${API_BASE_URL}${API_NATURE}/${id}`, nature);
   }
 
+
   delete(nature:Nature){
     return this.http.delete(`${API_BASE_URL}${API_NATURE}/${nature.id}`);
   }
 
-  post(nature: Nature): Observable<Nature> {
-    return <Observable<Nature>>this.http.post(`${API_BASE_URL}${API_NATURE}`, nature);
-  }
+  
+ 
 }
