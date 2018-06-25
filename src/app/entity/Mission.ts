@@ -1,17 +1,17 @@
 import { Nature } from "./Nature";
 
 export enum Transport{
-    AVION='Avion',
-    COVOITURAGE='Covoiturage',
-    TRAIN='Train',
-    VOITURE_DE_SERVICE='Voiture de service'
+    AVION='AVION',
+    COVOITURAGE='COVOITURAGE',
+    TRAIN='COVOITURAGE',
+    VOITURE_DE_SERVICE='VOITURE_DE_SERVICE'
 }
 
 export enum Statut{
-    INITIAL='Initial',
-    EN_ATTENTE_VALIDATION='En attende de validation',
-    VALIDEE='Validée',
-    REJETEE='Rejetée'
+    INITIAL='INITIALE',
+    EN_ATTENTE_VALIDATION='EN_ATTENTE_VALIDATION',
+    VALIDEE='VALIDEE',
+    REJETEE='REJETEE'
 }
 
 export class Mission{

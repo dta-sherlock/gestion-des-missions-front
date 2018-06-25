@@ -12,6 +12,7 @@ export default class FormulaireMissionsServiceService {
 
   // Ajoute une mission
   postMission(mission: Mission): Observable<Mission> {
+    console.log( mission)
     return <Observable<Mission>>this.http.post(`${API_BASE_URL}${API_MISSION}`, mission);
   }
   
