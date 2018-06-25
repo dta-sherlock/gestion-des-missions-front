@@ -19,7 +19,7 @@ ListeDesMissions:Array<Mission>
 
   putMission(mission:Mission){
     let id = this.cookie.get('utilisateur');
-    this.http.put(`${API_BASE_URL}${PATH_VALIDATION_MISSION}/${id}`, mission);
+   // this.http.put(`${API_BASE_URL}${PATH_VALIDATION_MISSION}/${id}/mission/${mission.id}`, mission);
   }
 
 }

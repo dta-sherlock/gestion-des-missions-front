@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { RecupMissionsService } from './services/recup-missions.service';
 import { TableauMissionEnAttenteValidationComponent } from './tableau-mission-en-attente-validation/tableau-mission-en-attente-validation.component';
 import {CookieService} from 'ngx-cookie-service';
+import { RecupManagerMissionService } from './services/recup-manager-mission.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,11 +19,15 @@ import {CookieService} from 'ngx-cookie-service';
     TableauMissionEnAttenteValidationComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
     RecupMissionsService,
-    CookieService
+    HttpClientModule,
+    CookieService,
+    RecupManagerMissionService
+    
   ],
   bootstrap: [AppComponent]
 })
