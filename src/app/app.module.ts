@@ -14,7 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NatureTableauComponent } from './nature-tableau/nature-tableau.component';
 import { RecupNatureService } from './services/recupNatureService/recup-nature.service';
 import { FormulaireNatureServiceService } from './services/formulaireNatureService/formulaire-nature-service.service';
-
+import { TableauMissionEnAttenteValidationComponent } from './tableau-mission-en-attente-validation/tableau-mission-en-attente-validation.component';
+import {CookieService} from 'ngx-cookie-service';
+import { RecupManagerMissionService } from './services/recup-manager-mission.service';
+import { HttpClient,} from '@angular/common/http';
 
 
 @NgModule({
@@ -38,7 +41,9 @@ import { FormulaireNatureServiceService } from './services/formulaireNatureServi
     RecupMissionsService,
     FormulaireMissionsServiceService,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    CookieService,
+    RecupManagerMissionService
   ],
   bootstrap: [AppComponent]
 })
