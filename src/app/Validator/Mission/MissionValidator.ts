@@ -1,12 +1,11 @@
 import { FormControl } from "@angular/forms";
-import _ from 'lodash';
-import { DatePipe } from "@angular/common";
+import * as moment from "moment"
 
 
-function isAfterToday(control :FormControl):boolean {
-    let day=new Date();
+export function isAfterToday(control :FormControl):boolean {
+    let today = moment();
     //Cette ligne permet de reformater la date au même format que le formulaire
-    let today=((day.getFullYear()+"-"+((day.getMonth()+1)<=9?"0":"")+(day.getMonth()+1)+"-"+day.getDate()))
+    //let today=((day.getFullYear()+"-"+((day.getMonth()+1)<=9?"0":"")+(day.getMonth()+1)+"-"+day.getDate()))
      if (control.value <= today) {
         return false;
     }
@@ -15,7 +14,7 @@ function isAfterToday(control :FormControl):boolean {
     }
 }
 
-function isWeekEnd(control :FormControl){
+export function isWeekEnd(control :FormControl){
     let dateFormulaire=control.value.toString();
     let date=new Date();
     date.setFullYear(dateFormulaire.substring(0,4),dateFormulaire.substring(5,7)-1,dateFormulaire.substring(8,10));

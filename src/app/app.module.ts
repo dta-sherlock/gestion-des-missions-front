@@ -9,11 +9,11 @@ import {FormsModule} from "@angular/forms";
 import { TabMissionComponent } from './tab-mission/tab-mission.component';
 import { RecupMissionsService } from './services/recupMissionService/recup-missions.service';
 import { FormulaireMissionsComponent } from './formulaire-missions/formulaire-missions.component';
-import  FormulaireMissionsServiceService  from './services/formulaireMissionService/formulaire-missions-service.service';
+import  FormulaireMissionsServiceService  from './services/formulaireMissionService/formulaire-missions.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NatureTableauComponent } from './nature-tableau/nature-tableau.component';
 import { RecupNatureService } from './services/recupNatureService/recup-nature.service';
-import { FormulaireNatureServiceService } from './services/formulaireNatureService/formulaire-nature-service.service';
+import { FormulaireNatureServiceService } from './services/formulaireNatureService/formulaire-nature.service';
 
 
 

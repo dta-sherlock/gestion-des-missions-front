@@ -10,13 +10,14 @@ export default class FormulaireMissionsServiceService {
 
   constructor(private http: HttpClient) { }
 
+  // Ajoute une mission
   postMission(mission: Mission): Observable<Mission> {
     return <Observable<Mission>>this.http.post(`${API_BASE_URL}${API_MISSION}`, mission);
   }
   
+  // Récupère une mission particulière via son id
   getMissionById(id:number): Observable<Mission>{
     return <Observable<Mission>>this.http.get(`${API_BASE_URL}${API_MISSION}/${id}`);
-    
   }
 
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RecupMissionsService } from '../services/recupMissionService/recup-missions.service';
-import { Mission } from '../entity/Mission';
-import { PATH_AJOUT_MISSIONS, PATH_MISSIONS } from '../constantes';
+import { Mission, Transport, Statut } from '../entity/Mission';
+import { PATH_AJOUT_MISSIONS, PATH_MISSIONS, PATH_MODIFIER_MISSION } from '../constantes';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Nature } from '../entity/Nature';
 
 @Component({
   selector: 'app-tab-mission',
@@ -13,6 +14,7 @@ import { Observable } from 'rxjs';
 export class TabMissionComponent implements OnInit {
 
   private listeMissions: Observable<Array<Mission>>;
+  private mission: Mission;
 
   constructor(private router: Router, private missionService: RecupMissionsService) { }
 
@@ -25,18 +27,17 @@ export class TabMissionComponent implements OnInit {
   // Supprimer une mission
   suppressionMission(mission: Mission){
     this.missionService.supprimerMission(mission).subscribe();
-    
     this.listeMissions.subscribe(val => {
       let index = val.indexOf(mission);
       val.splice(index, 1);
     });
-    this.router.navigate([PATH_MISSIONS]);
+    this.listeMissions = this.missionService.getMissionsPourCollab();
   }
 
   // Renvoie l'utilisateur sur la page de modification
   // de cette mission
   modifierMission(mission: Mission){
-    this.router.navigate([PATH_AJOUT_MISSIONS, mission.id]);
+    this.router.navigate([PATH_MODIFIER_MISSION, mission.id]);
   }
 
   // Si l'utilisateur choisit d'afficher une absence
@@ -44,8 +45,14 @@ export class TabMissionComponent implements OnInit {
     //TODO Renvoi vers l'application Gestion-des-absences
   }
 
+  recup(index:number){
+    this.mission = this.listeMissions[index];
+  }
+
   ngOnInit() {
     this.listeMissions = this.missionService.getMissionsPourCollab();
+    let nature: Nature = new Nature("", false, false, 0, 0, false, new Date(), 0, new Date());
+    this.mission = new Mission(new Date(), new Date(), nature, "", "", Transport.AVION, 0, Statut.REJETEE);
   }
 
 }

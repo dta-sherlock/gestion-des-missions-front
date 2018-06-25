@@ -4,7 +4,7 @@ import { Nature } from '../entity/Nature';
 import { PATH_NATURE, PATH_MISSIONS } from '../constantes';
 import { RecupNatureService } from '../services/recupNatureService/recup-nature.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormulaireNatureServiceService } from '../services/formulaireNatureService/formulaire-nature-service.service';
+import { FormulaireNatureServiceService } from '../services/formulaireNatureService/formulaire-nature.service';
 import { Observable } from 'rxjs';
 
 @Component({
