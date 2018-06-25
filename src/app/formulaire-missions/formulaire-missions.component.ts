@@ -18,8 +18,9 @@ import { RecupNatureService } from '../services/recupNatureService/recup-nature.
 })
 export class FormulaireMissionsComponent implements OnInit {
   private listeNatures: Array<Nature> = new Array<Nature>();
-  mission: Mission = new Mission(new Date(), new Date(), null, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);;
-  natureInitiale: Nature = new Nature("", false, false, 2, 100, true, new Date(), 15, new Date());
+  natureInitiale: Nature =new Nature("tst",null,null,null,null,null,null,null,null);
+  mission: Mission = new Mission(new Date(), new Date(), this.natureInitiale, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
+  
   
   dateDebutCtrl: FormControl;
   dateFinCtrl: FormControl;
@@ -62,9 +63,14 @@ export class FormulaireMissionsComponent implements OnInit {
   transports = Object.keys(Transport).map(k => Transport[k]);
 
   handleSubmit() {
-    console.log("la mission est nature", this.natureInitiale);
-    this.missionService.postMission(new Mission(this.mission.dateDebut, this.mission.dateFin, this.natureInitiale, this.mission.villeDeDepart, this.mission.villeDArrivee, this.mission.transport, 0, Statut.INITIAL)).subscribe();
-    //console.log('SUBMIT', this.mission.dateDebut, this.mission.dateFin, this.natureInitiale, this.mission.villeDeDepart, this.mission.villeDArrivee, this.mission.transport, 0, Statut.INITIAL);
+
+    let i=0;
+    while(this.listeNatures[i].nom!=this.missionForm.value.nature){
+      i=i+1;
+    }
+    this.mission.nature=this.listeNatures[i];
+
+    this.missionService.postMission(new Mission(this.mission.dateDebut, this.mission.dateFin, this.mission.nature, this.mission.villeDeDepart, this.mission.villeDArrivee, this.mission.transport, 0, Statut.INITIAL)).subscribe();
     this.router.navigate([PATH_MISSIONS])
   }
 
@@ -79,9 +85,10 @@ export class FormulaireMissionsComponent implements OnInit {
 
   ngOnInit() {
 
+    this.natureInitiale= new Nature("", false, false, 2, 100, true, new Date(), 15, new Date());
     this.natureService.getNature().toPromise().then(ln => {
       ln.forEach(n => this.listeNatures.push(n));});
-
+     
       if (this.mission.id != null) {
         this.route.paramMap.subscribe((params: ParamMap) => {
           this.mission.id = +params.get('idMission');

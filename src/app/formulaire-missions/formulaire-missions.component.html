@@ -19,7 +19,8 @@
     <div class="row">
       <label class="col-5">Nature : </label>
       <select formControlName="nature" class="form-control col-7" [(ngModel)]="mission.nature">
-        <option *ngFor="let nature of listeNatures"> {{nature.nom}} </option>
+          <option></option>
+        <option *ngFor="let nature of listeNatures" > {{nature.nom}} </option>
       </select>
     </div>
     <div class="row">
@@ -33,7 +34,7 @@
     <div class="row">
       <label class="col-5">Transport : </label>
       <select formControlName="transport" class="form-control col-7" [(ngModel)]="mission.transport">
-        <option *ngFor="let item of transports"> {{item}}</option>
+        <option *ngFor="let item of transports" > {{item}}</option>
 
       </select>
     </div>
