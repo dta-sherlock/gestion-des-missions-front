@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecupMissionsService } from '../services/recupMissionService/recup-missions.service';
 import { Mission } from '../entity/Mission';
-import { PATH_AJOUT_MISSIONS, PATH_MISSIONS } from '../constantes';
+import { PATH_AJOUT_MISSIONS, PATH_MISSIONS, PATH_MODIFIER_MISSION } from '../constantes';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -30,13 +30,12 @@ export class TabMissionComponent implements OnInit {
       let index = val.indexOf(mission);
       val.splice(index, 1);
     });
-    this.router.navigate([PATH_MISSIONS]);
   }
 
   // Renvoie l'utilisateur sur la page de modification
   // de cette mission
   modifierMission(mission: Mission){
-    this.router.navigate([PATH_AJOUT_MISSIONS, mission.id]);
+    this.router.navigate([PATH_MODIFIER_MISSION, mission.id]);
   }
 
   // Si l'utilisateur choisit d'afficher une absence

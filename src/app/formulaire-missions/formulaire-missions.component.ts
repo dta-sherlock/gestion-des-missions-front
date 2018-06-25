@@ -71,7 +71,7 @@ export class FormulaireMissionsComponent implements OnInit {
     this.mission.nature=this.listeNatures[i];
 
     this.missionService.postMission(new Mission(this.mission.dateDebut, this.mission.dateFin, this.mission.nature, this.mission.villeDeDepart, this.mission.villeDArrivee, this.mission.transport, 0, Statut.INITIAL)).subscribe();
-    this.router.navigate([PATH_MISSIONS])
+    this.router.navigate([PATH_MISSIONS]);
   }
 
 

@@ -3,7 +3,7 @@ import { Nature } from "./Nature";
 export enum Transport{
     AVION='AVION',
     COVOITURAGE='COVOITURAGE',
-    TRAIN='COVOITURAGE',
+    TRAIN='TRAIN',
     VOITURE_DE_SERVICE='VOITURE_DE_SERVICE'
 }
 

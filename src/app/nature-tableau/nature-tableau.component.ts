@@ -51,12 +51,14 @@ export class NatureTableauComponent implements OnInit {
 
   ajouterNature() {
     console.log('Post: ', this.nature);
+    this.listeNatures.push(this.nature)
     this.formulaireNatureService.postNature(new Nature(this.nature.nom, this.nature.facturation, this.nature.prime, this.nature.pourcentage, this.nature.plafond, this.nature.plafondDepassable, this.nature.debutValidite,this.nature.tjm,this.nature.finValidite)).subscribe();
   }
 
   // Supprimer une nature
   suppressionNature(nature: Nature) {
     console.log('Delete', nature);
+    this.listeNatures.splice(this.listeNatures.indexOf(nature),1)
     this.formulaireNatureService.delete(nature).subscribe();
   }
 
