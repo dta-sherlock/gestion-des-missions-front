@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { Nature } from '../entity/Nature';
+import { RecupManagerMissionService } from './recup-manager-mission.service';
 
 @Injectable()
 export class RecupMissionsService {
 
 
-  constructor() { }
+  constructor(recuperation:RecupManagerMissionService) { }
 
   getMissionsPourCollab(){
     // Création jeu de données pour test
@@ -19,6 +20,10 @@ export class RecupMissionsService {
     listeTest.push(new Mission(1,new Date(), new Date(), natureTest2, "Nantes", "Lille", Transport.COVOITURAGE, 100, Statut.EN_ATTENTE_VALIDATION));
     listeTest.push(new Mission(2,new Date(), new Date(), natureTest3, "Nantes", "Paris", Transport.AVION, 100, Statut.VALIDEE));
 
+    /*RecupManagerMissionService.prototype.getMissions().subscribe((value)=>{
+      listeTest = value;
+    });
+    */
     return listeTest;
   }
 

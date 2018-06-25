@@ -17,4 +17,9 @@ ListeDesMissions:Array<Mission>
    return <Observable<Array<Mission>>>this.http.get(`${API_BASE_URL}${PATH_VALIDATION_MISSION}/${id}`);
   }
 
+  putMission(mission:Mission){
+    let id = this.cookie.get('utilisateur');
+    this.http.put(`${API_BASE_URL}${PATH_VALIDATION_MISSION}/${id}`, mission);
+  }
+
 }
