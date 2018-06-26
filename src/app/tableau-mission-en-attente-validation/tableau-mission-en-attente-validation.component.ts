@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RecupMissionsService } from '../services/recup-missions.service';
+
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { CookieService } from 'ngx-cookie-service';
+import { RecupMissionsService } from '../services/recupMissionService/recup-missions.service';
+import { ValueTransformer } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-tableau-mission-en-attente-validation',
@@ -33,7 +35,9 @@ export class TableauMissionEnAttenteValidationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listeMissions = this.missionService.getMissionsPourCollab();
+    this.missionService.getMissionsPourCollab().subscribe((value)=>{
+      this.listeMissions = value;
+    });
   }
 
 }

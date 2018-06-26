@@ -18,6 +18,7 @@ import { TableauMissionEnAttenteValidationComponent } from './tableau-mission-en
 import {CookieService} from 'ngx-cookie-service';
 import { RecupManagerMissionService } from './services/recup-manager-mission.service';
 import { HttpClient,} from '@angular/common/http';
+import { ModifierMissionComponent } from './modifier-mission/modifier-mission.component';
 
 
 @NgModule({
@@ -26,6 +27,8 @@ import { HttpClient,} from '@angular/common/http';
     TabMissionComponent,
     FormulaireMissionsComponent,
     NatureTableauComponent,
+    TableauMissionEnAttenteValidationComponent,
+    ModifierMissionComponent,
   ],
   imports: [
     HttpClientModule,
@@ -40,6 +43,7 @@ import { HttpClient,} from '@angular/common/http';
     RecupNatureService,
     RecupMissionsService,
     FormulaireMissionsServiceService,
+    
     RouterModule,
     HttpClientModule,
     CookieService,

@@ -93,9 +93,7 @@
 
             <div class="row">
               <label class="col-5">Facturée : </label>
-              <select name="facturation" formControlName="facturation" class="form-control col-7"
-                   (ngModelChange)="setFacturation($event)"
-                  [ngModel]="nature.facturation">
+              <select name="facturation" formControlName="facturation" class="form-control col-7" [ngModel]="nature.facturation">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
@@ -103,7 +101,7 @@
 
             <div class="row">
               <label class="col-5">Versement prime : </label>
-              <select formControlName="prime" class="form-control col-7" [(ngModel)]="nature.prime">
+              <select name="prime" formControlName="prime" class="form-control col-7" [(ngModel)]="nature.prime">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
@@ -163,36 +161,36 @@
             <div class="row">
 
               <label class="col-5">Nature : </label>
-              <input formControlName="nom" class="form-control col-7" name="nom" [(ngModel)]="nature.nom">
+              <input formControlName="nom" class="form-control col-7" name="nom" [(ngModel)]="natureModif.nom">
             </div>
 
             <div class="row">
               <label class="col-4">Facturée : </label>
-              <select formControlName="facturation" class="form-control col-2" [(ngModel)]="nature.facturation">
+              <select formControlName="facturation" class="form-control col-2" [(ngModel)]="natureModif.facturation">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
 
               <label class="col-4">TJM : </label>
-              <input type="text" formControlName="tjm" class="form-control col-2" [(ngModel)]="nature.tjm">
+              <input type="text" formControlName="tjm" class="form-control col-2" [(ngModel)]="natureModif.tjm">
             </div>
 
             <div class="row">
               <label class="col-4">Versement prime : </label>
-              <select formControlName="prime" class="form-control col-2" [(ngModel)]="nature.prime">
+              <select formControlName="prime" class="form-control col-2" [(ngModel)]="natureModif.prime">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
 
               <label class="col-4">% Prime : </label>
-              <input type="text" formControlName="pourcentage" class="form-control col-2" [(ngModel)]="nature.pourcentage">
+              <input type="text" formControlName="pourcentage" class="form-control col-2" [(ngModel)]="natureModif.pourcentage">
 
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
-          <button class="btn btn-success" data-dismiss="modal" (click)="editerNature(nature)" [disabled]="natureForm.invalid">Valider</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="editerNature(natureModif, nature)" [disabled]="nature.invalid">Valider</button>
         </div>
       </div>
     </div>

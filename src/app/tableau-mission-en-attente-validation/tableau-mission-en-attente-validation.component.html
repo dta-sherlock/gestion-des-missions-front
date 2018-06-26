@@ -19,7 +19,7 @@
       <!-- Remplissage du tableau -->
       
          
-            <tr *ngIf="mission.statut==='En attende de validation'">
+            <tr *ngIf="mission.statut==='EN_ATTENTE_VALIDATION'" >
             <td>{{mission.dateDebut | date:'dd/MM/yyyy'}}</td>
             <td>{{mission.dateFin | date:'dd/MM/yyyy'}}</td>
             <td>{{mission.nature.nom}}</td>
@@ -32,14 +32,14 @@
                 
               <div class="col-6">
                 
-                <a href="#" (click)="isAcceptMission(true,mission)"><i class="fas fa-check"></i></a>
+                <a href="/manager/missions" (click)="isAcceptMission(true,mission)"><i class="fas fa-check"></i></a>
               </div>
               <!-- Si le statut est 'Initiale' ou 'Rejetée' on affiche
                 une icone de modification -->
                 <!-- TODO Ajout du test si 'ABSENCE' -->
               <div class="col-6">
                 
-                  <a href="#" (click)="isAcceptMission(false,mission)"><i class="fas fa-times"></i></a>
+                  <a href="/manager/missions" (click)="isAcceptMission(false,mission)"><i class="fas fa-times"></i></a>
                 
               </div>
             </div>
