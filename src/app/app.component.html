@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<div class="container">
+<div class="container" id="navbar">
   <div class="row bg-dark">
   <nav class="navbar navbar-expand-lg navbar-dark col-ls-9 col-sm-8">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,22 +10,22 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Accueil</a>
+          <a class="nav-link" (click)="navigateToAccueil()">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gestion des missions</a>
+          <a class="nav-link" (click)="navigateToMissions()">Gestion des missions</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Planning des missions</a>
+          <a class="nav-link" (click)="navigateToPlanningMissions()">Planning des missions</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Primes</a>
+          <a class="nav-link" (click)="navigateToPrimes()">Primes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Saisie note de frais</a>
+          <a class="nav-link" (click)="navigateToNotesFrais()">Saisie note de frais</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Natures de mission</a>
+          <a class="nav-link"  (click)="navigateToNature()">Natures de mission</a>
         </li>
       </ul>
     </div>
@@ -37,5 +37,6 @@
       <p class="text-light">Bonjour Untel </p>
         <a href="#">Se déconnecter</a>
     </div>
+  </div>
 </div>
-</div>
+<router-outlet></router-outlet>

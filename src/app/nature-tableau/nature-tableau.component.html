@@ -1,0 +1,200 @@
+<div class="container-fluid">
+
+  <h2 class="text-center" id="titre_nature">Gestion des natures</h2>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nature</th>
+        <th>Facturée</th>
+        <th>Prime</th>
+        <th>TJM(€)</th>
+        <th>%Prime</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Remplissage du tableau -->
+      <tr *ngFor="let nature of listeNatures,index as index">
+        <td>{{nature.nom | titlecase}}</td>
+
+        <td *ngIf="nature.facturation; else nonFacturee">
+          Oui
+        </td>
+        <ng-template #nonFacturee>
+          <td>Non</td>
+        </ng-template>
+
+        <script>console.log(nature.prime);</script>
+        <td *ngIf="nature.prime; else nonPrime">
+          Oui
+        </td>
+        <ng-template #nonPrime>
+          <td>Non </td>
+        </ng-template>
+
+        <td>{{nature.tjm}}</td>
+
+        <td>{{nature.pourcentage}}</td>
+
+        <td>
+          <div class="row">
+            <div class="col-6">
+              <input type="hidden" value="{{index}}" #noLigne>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSupprimer" (click)="recup(noLigne.value)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditer" (click)="recup(noLigne.value)">
+                <i class="fas fa-edit"></i>
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Bouton d'ajout d'une nature -->
+  <div class="row">
+    <div class="col-lg-2 offset-lg-9 col-sm-5 offset-sm-5">
+      <h5>Ajouter une nature de mission : </h5>
+    </div>
+    <div class="col-lg-1 col-sm-2">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAjout">
+        +
+      </button>
+    </div>
+  </div>
+
+  <!-- Création de la modal d'ajout -->
+  <div class="modal fade" id="modalAjout" tabindex="-1" role="dialog" aria-labelledby="Ajout" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter une nature de mission</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!--contenu de la modal -->
+          <h2>Nouvelle nature de mission</h2>
+
+          <form (ngSubmit)="handleSubmit()" name="formeAjout" [formGroup]="natureForm">
+            <div class="row">
+
+              <label class="col-5">Nature : </label>
+              <input formControlName="nom" class="form-control col-7" name="nom" [(ngModel)]="nature.nom">
+            </div>
+
+            <div class="row">
+              <label class="col-5">Facturée : </label>
+              <select name="facturation" formControlName="facturation" class="form-control col-7" [ngModel]="nature.facturation">
+                <option value="true"> Oui </option>
+                <option value="false"> Non </option>
+              </select>
+            </div>
+
+            <div class="row">
+              <label class="col-5">Versement prime : </label>
+              <select name="prime" formControlName="prime" class="form-control col-7" [(ngModel)]="nature.prime">
+                <option value="true"> Oui </option>
+                <option value="false"> Non </option>
+              </select>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+          <button class="btn btn-success" data-dismiss="modal" type="submit" (click)="ajouterNature()" [disabled]="natureForm.invalid">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Création de la modal de suppresion -->
+  <div class="modal fade" id="modalSupprimer" tabindex="-1" role="dialog" aria-labelledby="Suppression" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Confirmation de Supression</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!--contenu de la modal -->
+          Confirmez-vous la suppression de la nature de mission {{nature.nom}}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="suppressionNature(nature)">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Création de la modal d'edition -->
+  <div class="modal fade" id="modalEditer" tabindex="-1" role="dialog" aria-labelledby="Editer" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Modifier une nature de mission</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!--contenu de la modal -->
+          <h2>Modifier nature de mission</h2>
+
+          <form (ngSubmit)="handleSubmit()" name="formeEdit" [formGroup]="natureForm">
+            <div class="row">
+
+              <label class="col-5">Nature : </label>
+              <input formControlName="nom" class="form-control col-7" name="nom" [(ngModel)]="natureModif.nom">
+            </div>
+
+            <div class="row">
+              <label class="col-4">Facturée : </label>
+              <select formControlName="facturation" class="form-control col-2" [(ngModel)]="natureModif.facturation">
+                <option value="true"> Oui </option>
+                <option value="false"> Non </option>
+              </select>
+
+              <label class="col-4">TJM : </label>
+              <input type="text" formControlName="tjm" class="form-control col-2" [(ngModel)]="natureModif.tjm">
+            </div>
+
+            <div class="row">
+              <label class="col-4">Versement prime : </label>
+              <select formControlName="prime" class="form-control col-2" [(ngModel)]="natureModif.prime">
+                <option value="true"> Oui </option>
+                <option value="false"> Non </option>
+              </select>
+
+              <label class="col-4">% Prime : </label>
+              <input type="text" formControlName="pourcentage" class="form-control col-2" [(ngModel)]="natureModif.pourcentage">
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="editerNature(natureModif, nature)" [disabled]="nature.invalid">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
