@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NatureTableauComponent } from './nature-tableau.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('NatureTableauComponent', () => {
   let component: NatureTableauComponent;
@@ -8,7 +11,8 @@ describe('NatureTableauComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NatureTableauComponent ]
+      declarations: [ NatureTableauComponent ],
+      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   }));

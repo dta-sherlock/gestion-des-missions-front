@@ -3,10 +3,13 @@ import { TestBed, inject } from '@angular/core/testing';
 import { RecupMissionsService } from './recup-missions.service';
 import { Mission, Transport, Statut } from '../../entity/Mission';
 import { Nature } from '../../entity/Nature';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RecupMissionsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [RecupMissionsService]
     });
   });

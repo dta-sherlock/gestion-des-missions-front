@@ -13,7 +13,7 @@ import { RecupNatureService } from '../services/recupNatureService/recup-nature.
   templateUrl: './modifier-mission.component.html',
   styleUrls: ['./modifier-mission.component.css'],
   providers: [
-    Document,
+    Document, RecupNatureService, FormulaireMissionsServiceService
   ]
 })
 export class ModifierMissionComponent implements OnInit {
@@ -21,6 +21,7 @@ export class ModifierMissionComponent implements OnInit {
   private listeNatures: Array<Nature> = new Array<Nature>();
   natureInitiale: Nature = new Nature("tst", null, null, null, null, null, null, null, null);
   mission: Mission = new Mission(new Date(), new Date(), this.natureInitiale, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
+  newMission: Mission = new Mission(new Date(), new Date(), this.natureInitiale, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
 
 
   dateDebutCtrl: FormControl;
@@ -33,7 +34,7 @@ export class ModifierMissionComponent implements OnInit {
 
   missionForm: FormGroup;
 
-  constructor(private natureService: RecupNatureService, private document: Document, fb: FormBuilder, private router: Router, private route: ActivatedRoute, private missionService: FormulaireMissionsServiceService) {
+  constructor(private natureService: RecupNatureService, fb: FormBuilder, private router: Router, private route: ActivatedRoute, private missionService: FormulaireMissionsServiceService) {
 
     this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]);
     this.dateFinCtrl = fb.control('', [Validators.required]);
@@ -54,15 +55,13 @@ export class ModifierMissionComponent implements OnInit {
     });
   }
 
-  navigateToMissions() {
-    this.router.navigate([PATH_MISSIONS])
-  }
-
   //recupere les valeurs des enums
   transports = Object.keys(Transport).map(k => Transport[k]);
 
   handleSubmit() {
-    this.router.navigate([PATH_MISSIONS]);
+    setTimeout(() => {
+      this.router.navigate([PATH_MISSIONS]);
+    }, 100);
   }
 
   modifierMission(mission: Mission) {
@@ -75,26 +74,18 @@ export class ModifierMissionComponent implements OnInit {
     this.missionService.put(new Mission(mission.dateDebut, mission.dateFin, mission.nature, mission.villeDeDepart, mission.villeDArrivee, mission.transport, mission.prime, mission.statut), this.mission.id).subscribe()
   }
 
-  setDateDebutFormated(value: string) {
-    this.mission.dateDebut = new Date(value);
-  }
-
-  setDateFinFormated(value: string) {
-    this.mission.dateFin = new Date(value);
-  }
-
   ngOnInit() {
 
     this.natureInitiale = new Nature("", false, false, 2, 100, true, new Date(), 15, new Date());
     this.natureService.getNature().toPromise().then(ln => {
       ln.forEach(n => this.listeNatures.push(n));
     });
-
-
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.mission.id = +params.get('idMission');
     });
     this.missionService.getMissionById(this.mission.id).toPromise().then(m => this.mission = m);
+    this.missionService.getMissionById(this.mission.id).toPromise().then(m => this.newMission = m);
+  console.log(this.mission)
   }
 
 }

@@ -50,33 +50,7 @@
               <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#modalSupprimer" (click)="recup(noLigne.value)">
                 <i class="fas fa-trash-alt"></i>
               </button>
-
-
-              <!-- Modal de confirmation de suppression d'une mission -->
-              <div class="modal fade" id="modalSupprimer" tabindex="-1" role="dialog" aria-labelledby="Suppression" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="modalTitle">Confirmation de Supression</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-                      <!-- Contenu de la modal -->
-                      Confirmez-vous la suppression de la mission du {{mission.dateDebut | date:'dd/MM/yyyy'}} au {{mission.dateFin | date:'dd/MM/yyyy'}}
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                      <button class="btn btn-success" data-dismiss="modal" (click)="suppressionMission(mission)">Valider</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              
-            </div>
+           </div>
             <!-- Si le statut est 'Initiale' ou 'Rejetée' on affiche
               une icone de modification -->
             <!-- TODO Ajout du test si 'ABSENCE' -->
@@ -97,6 +71,29 @@
       </tr>
     </tbody>
   </table>
+
+  <!-- Modal de confirmation de suppression d'une mission -->
+  <div class="modal fade" id="modalSupprimer" tabindex="-1" role="dialog" aria-labelledby="Suppression" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Confirmation de Supression {{mission.villeDeDepart}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!-- Contenu de la modal -->
+          Confirmez-vous la suppression de la mission du {{mission.dateDebut | date:'dd/MM/yyyy'}} au {{mission.dateFin | date:'dd/MM/yyyy'}}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="suppressionMission(mission)">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Bouton d'ajout d'une mission -->
   <div class="row">

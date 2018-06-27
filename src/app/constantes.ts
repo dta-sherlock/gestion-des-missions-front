@@ -2,7 +2,8 @@ export const PATH_MISSIONS :string ='mission';
 export const PATH_AJOUT_MISSIONS: string = 'mission/ajout';
 export const PATH_NATURE:string='nature';
 export const PATH_MODIFIER_MISSION: string= 'mission/modifier'
-
+export const PATH_ACCUEIL:string='accueil'
+export const PATH_PLANNING_MISSION:string='miision/planning'
 export const PATH_FRAIS: string = "frais";
 export const PATH_PRIMES: string = "primes";
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecupMissionsService } from '../services/recupMissionService/recup-missions.service';
 import { Mission, Transport, Statut } from '../entity/Mission';
-import { PATH_AJOUT_MISSIONS, PATH_MISSIONS, PATH_MODIFIER_MISSION } from '../constantes';
+import { PATH_AJOUT_MISSIONS, PATH_MODIFIER_MISSION } from '../constantes';
 import { Router } from '@angular/router';
 import { Nature } from '../entity/Nature';
 
@@ -12,8 +12,8 @@ import { Nature } from '../entity/Nature';
 })
 export class TabMissionComponent implements OnInit {
 
-  private listeMissions: Array<Mission> = new Array<Mission>();
-  private mission: Mission;
+  listeMissions: Array<Mission> = new Array<Mission>();
+  mission: Mission = new Mission(new Date(), new Date(), new Nature("", false, false, 0, 0, false, new Date(), 0, new Date()), "", "", Transport.AVION, 0, Statut.INITIAL);;
 
   constructor(private router: Router, private missionService: RecupMissionsService) { }
 
@@ -49,8 +49,6 @@ export class TabMissionComponent implements OnInit {
     this.missionService.getMissionsPourCollab().toPromise().then(lm => {
       lm.forEach(m => this.listeMissions.push(m));
     });
-    let nature: Nature = new Nature("", false, false, 0, 0, false, new Date(), 0, new Date());
-    this.mission = new Mission(new Date(), new Date(), nature, "", "", Transport.AVION, 0, Statut.REJETEE);
   }
 
 }

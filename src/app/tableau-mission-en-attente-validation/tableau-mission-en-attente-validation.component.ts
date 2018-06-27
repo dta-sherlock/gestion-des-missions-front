@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Mission, Transport, Statut } from '../entity/Mission';
-import { CookieService } from 'ngx-cookie-service';
+import { Mission, Statut } from '../entity/Mission';
 import { RecupMissionsService } from '../services/recupMissionService/recup-missions.service';
-import { ValueTransformer } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-tableau-mission-en-attente-validation',
@@ -14,12 +12,9 @@ export class TableauMissionEnAttenteValidationComponent implements OnInit {
 
   listeMissions:Array<Mission>
 
-  constructor(private missionService:RecupMissionsService, private cookie:CookieService) { }
+  constructor(private missionService:RecupMissionsService) { }
 
   isAcceptMission(accept:Boolean, mission:Mission):Mission{
-    console.log("accept =",accept);
-    console.log(Number.parseInt(this.cookie.get('test')));
-    console.log("name =",this.cookie.get('name'))
     if(accept){
       this.listeMissions.indexOf
       mission.statut = Statut.VALIDEE;

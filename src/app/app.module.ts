@@ -16,9 +16,10 @@ import { RecupNatureService } from './services/recupNatureService/recup-nature.s
 import { FormulaireNatureServiceService } from './services/formulaireNatureService/formulaire-nature.service';
 
 import { TableauMissionEnAttenteValidationComponent } from './tableau-mission-en-attente-validation/tableau-mission-en-attente-validation.component';
-import {CookieService} from 'ngx-cookie-service';
+
 import { RecupManagerMissionService } from './services/recup-manager-mission.service';
 import { ModifierMissionComponent } from './modifier-mission/modifier-mission.component';
+
 
 
 @NgModule({
@@ -43,11 +44,10 @@ import { ModifierMissionComponent } from './modifier-mission/modifier-mission.co
     RecupNatureService,
     RecupMissionsService,
     FormulaireMissionsServiceService,
-    
     RouterModule,
     HttpClientModule,
-    CookieService,
-    RecupManagerMissionService
+    RecupManagerMissionService,
+    FormsModule,
   ],
   bootstrap: [AppComponent]
 })
