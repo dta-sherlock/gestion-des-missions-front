@@ -1,50 +1,57 @@
 <div class="container">
-    <h2>Demande de mission</h2>
-    <form (ngSubmit)="handleSubmit()" name="formeAjout" [formGroup]="missionForm">
-      <div class="row">
-        <label class="col-5">Date de début : </label>
-  
-        <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="setDateDebutFormated($event)"
-          [ngModel]="mission.dateDebut | date:'yyyy-MM-dd'">
-        <div *ngIf="dateDebutCtrl.dirty && dateDebutCtrl.hasError('isGoodDateDebut')">
-          <p>La date n'est pas valide</p>
+  <h2>Demande de mission</h2>
+  <form (ngSubmit)="handleSubmit()" name="formeAjout" [formGroup]="missionForm">
+    <div class="row">
+      <label class="col-5">Date de début : </label>
+      <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="setDateDebutFormated($event)"
+        [ngModel]="mission.dateDebut | date:'yyyy-MM-dd'">
+      <div *ngIf="dateDebutCtrl.dirty && dateDebutCtrl.hasError('isGoodDateDebut')">
+        <p class="text-danger">La date n'est pas valide</p>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-5">Date de fin : </label>
+      <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="setDateFinFormated($event)"
+        [ngModel]="mission.dateFin | date:'yyyy-MM-dd'">
+      <div *ngIf="dateFinCtrl.dirty && dateFinCtrl.hasError('isGoodDateFin')">
+        <p class="text-danger">La date n'est pas valide</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-5">Nature : </label>
+      <select formControlName="nature" class="form-control col-7" [(ngModel)]="mission.nature">
+        <option value =""></option>
+        <option *ngFor="let nature of listeNatures"> {{nature.nom}} </option>
+      </select>
+      <div *ngIf="natureCtrl.hasError('isEmpty')">
+          <p class="text-danger">Veuillez entrer une nature</p>
         </div>
-      </div>
-      <div class="row">
-        <label class="col-5">Date de fin : </label>
-        <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="setDateFinFormated($event)"
-          [ngModel]="mission.dateFin | date:'yyyy-MM-dd'">
-      </div>
-      
-      <div class="row">
-        <label class="col-5">Nature : </label>
-        <select formControlName="nature" class="form-control col-7" [(ngModel)]="mission.nature">
-            <option></option>
-          <option *ngFor="let nature of listeNatures" > {{nature.nom}} </option>
-        </select>
-      </div>
-      <div class="row">
-        <label class="col-5">Ville de départ : </label>
-        <input formControlName="villeDeDepart" class="form-control col-7" name="villeDeDepart" [(ngModel)]="mission.villeDeDepart" placeholder="Ville de départ">
-      </div>
-      <div class="row">
-        <label class="col-5">Ville d'arrivée : </label>
-        <input formControlName="villeDArrivee" class="form-control col-7" name="villeDArrivee" [(ngModel)]="mission.villeDArrivee" placeholder="Ville d'arrivée">
-      </div>
-      <div class="row">
-        <label class="col-5">Transport : </label>
-        <select formControlName="transport" class="form-control col-7" [(ngModel)]="mission.transport">
-          <option *ngFor="let item of transports" > {{item}}</option>
-  
-        </select>
-      </div>
-      <div class="row">
-        <label class="col-5">Estimation prime : </label>
-        <p>{{mission.prime}}€</p>
-      </div>
-      <div class="row">
-        <button class="btn btn-danger col-3 offset-5" (click)="navigateToMissions()">Annuler</button>
-        <button class="btn btn-success col-3" (click)="modifierMission(mission)" [disabled]="missionForm.invalid">Modifier</button>
-      </div>
-    </form>
-  </div>
+    </div>
+    <div class="row">
+      <label class="col-5">Ville de départ : </label>
+      <input formControlName="villeDeDepart" class="form-control col-7" name="villeDeDepart" [(ngModel)]="mission.villeDeDepart"
+        placeholder="Ville de départ">
+    </div>
+    <div class="row">
+      <label class="col-5">Ville d'arrivée : </label>
+      <input formControlName="villeDArrivee" class="form-control col-7" name="villeDArrivee" [(ngModel)]="mission.villeDArrivee"
+        placeholder="Ville d'arrivée">
+    </div>
+    <div class="row">
+      <label class="col-5">Transport : </label>
+      <select formControlName="transport" class="form-control col-7" [(ngModel)]="mission.transport">
+        <option *ngFor="let item of transports"> {{item}}</option>
+
+      </select>
+    </div>
+    <div class="row">
+      <label class="col-5">Estimation prime : </label>
+      <p>{{mission.prime}}€</p>
+    </div>
+    <div class="row">
+      <button class="btn btn-danger col-3 offset-5" (click)="navigateToMissions()">Annuler</button>
+      <button class="btn btn-success col-3" (click)="modifierMission(mission)" [disabled]="missionForm.invalid">Modifier</button>
+    </div>
+  </form>
+</div>

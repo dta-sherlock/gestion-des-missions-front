@@ -5,7 +5,7 @@ import { PATH_MISSIONS } from '../constantes';
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import FormulaireMissionsServiceService from '../services/formulaireMissionService/formulaire-missions-service.service';
-import { isGoodDateDebutValidator } from '../Validator/Mission/MissionValidator';
+import { isGoodDateDebutValidator, isGoodDateFinValidator, isEmptyValidator } from '../Validator/Mission/MissionValidator';
 import { RecupNatureService } from '../services/recupNatureService/recup-nature.service';
 
 @Component({
@@ -21,7 +21,6 @@ export class FormulaireMissionsComponent implements OnInit {
   natureInitiale: Nature =new Nature("tst",null,null,null,null,null,null,null,null);
   mission: Mission = new Mission(new Date(), new Date(), this.natureInitiale, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
   
-  
   dateDebutCtrl: FormControl;
   dateFinCtrl: FormControl;
   natureCtrl: FormControl;
@@ -34,9 +33,9 @@ export class FormulaireMissionsComponent implements OnInit {
 
   constructor(private natureService: RecupNatureService, private document: Document, fb: FormBuilder, private router: Router, private route: ActivatedRoute, private missionService: FormulaireMissionsServiceService) {
 
-    this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]);
-    this.dateFinCtrl = fb.control('', [Validators.required]);
-    this.natureCtrl = fb.control('', [Validators.required]);
+    this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]),
+      this.dateFinCtrl = fb.control('', [Validators.required, isGoodDateFinValidator])
+    this.natureCtrl = fb.control('', [Validators.required, isEmptyValidator]);
     this.villeDArriveeCtrl = fb.control('', [Validators.required]);
     this.villeDeDepartCtrl = fb.control('', [Validators.required]);
     this.transportCtrl = fb.control('', [Validators.required]);
@@ -69,7 +68,6 @@ export class FormulaireMissionsComponent implements OnInit {
       i=i+1;
     }
     this.mission.nature=this.listeNatures[i];
-
     this.missionService.postMission(new Mission(this.mission.dateDebut, this.mission.dateFin, this.mission.nature, this.mission.villeDeDepart, this.mission.villeDArrivee, this.mission.transport, 0, Statut.INITIAL)).subscribe();
     this.router.navigate([PATH_MISSIONS]);
   }
@@ -89,12 +87,6 @@ export class FormulaireMissionsComponent implements OnInit {
     this.natureService.getNature().toPromise().then(ln => {
       ln.forEach(n => this.listeNatures.push(n));});
      
-      if (this.mission.id != null) {
-        this.route.paramMap.subscribe((params: ParamMap) => {
-          this.mission.id = +params.get('idMission');
-        });
-        this.missionService.getMissionById(this.mission.id).toPromise().then(m => this.mission = m);
-      } else {
         let today = new Date();
         let now = new Date();
         now.setDate(today.getDate() + 1);
@@ -103,6 +95,6 @@ export class FormulaireMissionsComponent implements OnInit {
         let plusUneSemaine = today;
         this.mission.dateDebut = tomorrow;
         this.mission.dateFin = plusUneSemaine;
-      }
+      
     }
 }

@@ -7,35 +7,42 @@
       <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="setDateDebutFormated($event)"
         [ngModel]="mission.dateDebut | date:'yyyy-MM-dd'">
       <div *ngIf="dateDebutCtrl.dirty && dateDebutCtrl.hasError('isGoodDateDebut')">
-        <p>La date n'est pas valide</p>
+        <p class="text-danger">La date n'est pas valide</p>
       </div>
     </div>
     <div class="row">
       <label class="col-5">Date de fin : </label>
       <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="setDateFinFormated($event)"
         [ngModel]="mission.dateFin | date:'yyyy-MM-dd'">
+      <div *ngIf="dateFinCtrl.dirty && dateFinCtrl.hasError('isGoodDateFin')">
+        <p class="text-danger">La date n'est pas valide</p>
+      </div>
     </div>
-    
+
     <div class="row">
       <label class="col-5">Nature : </label>
       <select formControlName="nature" class="form-control col-7" [(ngModel)]="mission.nature">
-          <option></option>
-        <option *ngFor="let nature of listeNatures" > {{nature.nom}} </option>
+        <option value=""></option>
+        <option *ngFor="let nature of listeNatures"> {{nature.nom}} </option>
       </select>
+      <div *ngIf="natureCtrl.dirty && natureCtrl.hasError('isEmpty')">
+        <p class="text-danger">Veuillez entrer une nature</p>
+      </div>
     </div>
     <div class="row">
       <label class="col-5">Ville de départ : </label>
-      <input formControlName="villeDeDepart" class="form-control col-7" name="villeDeDepart" [(ngModel)]="mission.villeDeDepart" placeholder="Ville de départ">
+      <input formControlName="villeDeDepart" class="form-control col-7" name="villeDeDepart" [(ngModel)]="mission.villeDeDepart"
+        placeholder="Ville de départ">
     </div>
     <div class="row">
       <label class="col-5">Ville d'arrivée : </label>
-      <input formControlName="villeDArrivee" class="form-control col-7" name="villeDArrivee" [(ngModel)]="mission.villeDArrivee" placeholder="Ville d'arrivée">
+      <input formControlName="villeDArrivee" class="form-control col-7" name="villeDArrivee" [(ngModel)]="mission.villeDArrivee"
+        placeholder="Ville d'arrivée">
     </div>
     <div class="row">
       <label class="col-5">Transport : </label>
       <select formControlName="transport" class="form-control col-7" [(ngModel)]="mission.transport">
-        <option *ngFor="let item of transports" > {{item}}</option>
-
+        <option *ngFor="let item of transports"> {{item}}</option>
       </select>
     </div>
     <div class="row">

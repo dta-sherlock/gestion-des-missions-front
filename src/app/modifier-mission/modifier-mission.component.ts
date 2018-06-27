@@ -5,7 +5,7 @@ import { PATH_MISSIONS } from '../constantes';
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import FormulaireMissionsServiceService from '../services/formulaireMissionService/formulaire-missions-service.service';
-import { isGoodDateDebutValidator } from '../Validator/Mission/MissionValidator';
+import { isGoodDateDebutValidator, isEmptyValidator, isGoodDateFinValidator} from '../Validator/Mission/MissionValidator';
 import { RecupNatureService } from '../services/recupNatureService/recup-nature.service';
 
 @Component({
@@ -36,8 +36,8 @@ export class ModifierMissionComponent implements OnInit {
   constructor(private natureService: RecupNatureService, private document: Document, fb: FormBuilder, private router: Router, private route: ActivatedRoute, private missionService: FormulaireMissionsServiceService) {
 
     this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]);
-    this.dateFinCtrl = fb.control('', [Validators.required]);
-    this.natureCtrl = fb.control('', [Validators.required]);
+    this.dateFinCtrl = fb.control('', [Validators.required, isGoodDateFinValidator]);
+    this.natureCtrl = fb.control('', [Validators.required, isEmptyValidator]);
     this.villeDArriveeCtrl = fb.control('', [Validators.required]);
     this.villeDeDepartCtrl = fb.control('', [Validators.required]);
     this.transportCtrl = fb.control('', [Validators.required]);
