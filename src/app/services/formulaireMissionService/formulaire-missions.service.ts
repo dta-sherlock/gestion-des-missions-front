@@ -7,8 +7,12 @@ import { API_BASE_URL, API_MISSION } from '../../constantes';
 
 @Injectable()
 export default class FormulaireMissionsServiceService {
-
   constructor(private http: HttpClient) { }
+
+  // Met à jour une mission via son id
+  put(mission:Mission, id:number): any {
+    return this.http.put<Mission>(`${API_BASE_URL}${API_MISSION}/${id}`, mission);
+  }
 
   // Ajoute une mission
   postMission(mission: Mission): Observable<Mission> {

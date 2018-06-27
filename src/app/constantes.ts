@@ -13,3 +13,5 @@ export const API_NATURE: string = 'natures';
 
 export const API_FRAIS: string = "frais";
 export const API_PRIMES: string = "primes";
+
+export const PATH_VALIDATION_MISSION:string = "manager/missions";
