@@ -3,7 +3,6 @@ import { RecupMissionsService } from '../services/recupMissionService/recup-miss
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { PATH_AJOUT_MISSIONS, PATH_MISSIONS, PATH_MODIFIER_MISSION } from '../constantes';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Nature } from '../entity/Nature';
 
 @Component({
@@ -13,7 +12,7 @@ import { Nature } from '../entity/Nature';
 })
 export class TabMissionComponent implements OnInit {
 
-  private listeMissions: Observable<Array<Mission>>;
+  private listeMissions: Array<Mission> = new Array<Mission>();
   private mission: Mission;
 
   constructor(private router: Router, private missionService: RecupMissionsService) { }
@@ -27,11 +26,8 @@ export class TabMissionComponent implements OnInit {
   // Supprimer une mission
   suppressionMission(mission: Mission){
     this.missionService.supprimerMission(mission).subscribe();
-    this.listeMissions.subscribe(val => {
-      let index = val.indexOf(mission);
-      val.splice(index, 1);
-    });
-    this.listeMissions = this.missionService.getMissionsPourCollab();
+    let index = this.listeMissions.indexOf(mission);
+    this.listeMissions.splice(index, 1);
   }
 
   // Renvoie l'utilisateur sur la page de modification
@@ -50,7 +46,9 @@ export class TabMissionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listeMissions = this.missionService.getMissionsPourCollab();
+    this.missionService.getMissionsPourCollab().toPromise().then(lm => {
+      lm.forEach(m => this.listeMissions.push(m));
+    });
     let nature: Nature = new Nature("", false, false, 0, 0, false, new Date(), 0, new Date());
     this.mission = new Mission(new Date(), new Date(), nature, "", "", Transport.AVION, 0, Statut.REJETEE);
   }

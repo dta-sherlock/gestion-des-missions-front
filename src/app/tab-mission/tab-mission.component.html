@@ -20,7 +20,7 @@
       <!-- Si une mission est une 'absence' alors on 
       n'affiche pas le départ/arrivée/transport 
       et l'icone de suppression -->
-      <tr *ngFor="let mission of listeMissions | async; index as index">
+      <tr *ngFor="let mission of listeMissions; index as index">
         <td scope="row">{{mission.dateDebut | date:'dd/MM/yyyy'}}</td>
         <td>{{mission.dateFin | date:'dd/MM/yyyy'}}</td>
         <td>{{mission.nature.nom}}</td>
@@ -65,7 +65,7 @@
                     <div class="modal-body">
 
                       <!-- Contenu de la modal -->
-                      Confirmez-vous la suppression de cette mission ?
+                      Confirmez-vous la suppression de la mission du {{mission.dateDebut | date:'dd/MM/yyyy'}} au {{mission.dateFin | date:'dd/MM/yyyy'}}
                     </div>
                     <div class="modal-footer">
                       <button class="btn btn-danger" data-dismiss="modal">Annuler</button>

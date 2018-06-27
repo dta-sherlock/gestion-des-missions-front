@@ -14,6 +14,9 @@
       <label class="col-5">Date de fin : </label>
       <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="setDateFinFormated($event)"
         [ngModel]="mission.dateFin | date:'yyyy-MM-dd'">
+        <div *ngIf="dateDebutCtrl.hasError('isGoodDateDebut')">
+          <p>La date n'est pas valide</p>
+        </div>
     </div>
     
     <div class="row">
