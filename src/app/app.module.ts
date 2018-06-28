@@ -45,7 +45,6 @@ import { ModifierMissionComponent } from './modifier-mission/modifier-mission.co
     RecupMissionsService,
     FormulaireMissionsServiceService,
     RouterModule,
-    HttpClientModule,
     RecupManagerMissionService,
     FormsModule,
   ],
