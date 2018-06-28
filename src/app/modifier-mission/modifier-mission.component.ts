@@ -13,7 +13,7 @@ import { RecupNatureService } from '../services/recupNatureService/recup-nature.
   templateUrl: './modifier-mission.component.html',
   styleUrls: ['./modifier-mission.component.css'],
   providers: [
-    Document, RecupNatureService, FormulaireMissionsServiceService
+   RecupNatureService, FormulaireMissionsServiceService
   ]
 })
 export class ModifierMissionComponent implements OnInit {

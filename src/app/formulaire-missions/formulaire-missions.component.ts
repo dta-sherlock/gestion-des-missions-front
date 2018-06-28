@@ -13,7 +13,6 @@ import { RecupNatureService } from '../services/recupNatureService/recup-nature.
   templateUrl: './formulaire-missions.component.html',
   styleUrls: ['./formulaire-missions.component.css'],
   providers: [
-    Document,
     RecupNatureService
   ]
 })
@@ -32,7 +31,7 @@ export class FormulaireMissionsComponent implements OnInit {
 
   missionForm: FormGroup;
 
-  constructor(private natureService: RecupNatureService, private document: Document, fb: FormBuilder, private router: Router, private route: ActivatedRoute, private missionService: FormulaireMissionsServiceService) {
+  constructor( private missionService: FormulaireMissionsServiceService, private natureService: RecupNatureService, fb: FormBuilder, private router: Router) {
 
     this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]),
       this.dateFinCtrl = fb.control('', [Validators.required, isGoodDateFinValidator])
