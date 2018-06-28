@@ -74,6 +74,14 @@ export class FormulaireMissionsComponent implements OnInit {
     }, 100);
   }
 
+  setDateDebutFormated(value: string) {
+    this.mission.dateDebut = new Date(value);
+  }
+ 
+  setDateFinFormated(value: string) {
+    this.mission.dateFin = new Date(value);
+  }
+
   ngOnInit() {
 
     this.natureInitiale = new Nature("", false, false, 2, 100, true, new Date(), 15, new Date());
