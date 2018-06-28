@@ -3,16 +3,14 @@
   <form (ngSubmit)="handleSubmit()" name="formeAjout" [formGroup]="missionForm">
     <div class="row">
       <label class="col-5">Date de début : </label>
-      <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="setDateDebutFormated($event)"
-        [ngModel]="mission.dateDebut | date:'yyyy-MM-dd'">
+      <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut"  [(ngModel)]="mission.dateDebut">
       <div *ngIf="dateDebutCtrl.dirty && dateDebutCtrl.hasError('isGoodDateDebut')">
         <p class="text-danger">La date n'est pas valide</p>
       </div>
     </div>
     <div class="row">
       <label class="col-5">Date de fin : </label>
-      <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="setDateFinFormated($event)"
-        [ngModel]="mission.dateFin | date:'yyyy-MM-dd'">
+      <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin"  [(ngModel)]="mission.dateFin">
       <div *ngIf="dateFinCtrl.dirty && dateFinCtrl.hasError('isGoodDateFin')">
         <p class="text-danger">La date n'est pas valide</p>
       </div>
