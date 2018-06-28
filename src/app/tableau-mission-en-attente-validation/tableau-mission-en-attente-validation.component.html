@@ -1,0 +1,52 @@
+<div class="container-fluid">
+
+  <h2 class="text-center" id="titre_mission">Gestion des missions</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>Nature</th>
+        <th>Départ</th>
+        <th>Arrivée</th>
+        <th>Transport</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let mission of listeMissions">
+      <!-- Remplissage du tableau -->
+      
+         
+            <tr *ngIf="mission.statut==='EN_ATTENTE_VALIDATION'" >
+            <td>{{mission.dateDebut | date:'dd/MM/yyyy'}}</td>
+            <td>{{mission.dateFin | date:'dd/MM/yyyy'}}</td>
+            <td>{{mission.nature.nom}}</td>
+            <td>{{mission.villeDeDepart}}</td>
+            <td>{{mission.villeDArrivee}}</td>
+            <td>{{mission.transport}}</td>
+            <td>
+             <div class="row">
+              
+                
+              <div class="col-6">
+                
+                <a href="/manager/missions" (click)="isAcceptMission(true,mission)"><i class="fas fa-check"></i></a>
+              </div>
+              <!-- Si le statut est 'Initiale' ou 'Rejetée' on affiche
+                une icone de modification -->
+                <!-- TODO Ajout du test si 'ABSENCE' -->
+              <div class="col-6">
+                
+                  <a href="/manager/missions" (click)="isAcceptMission(false,mission)"><i class="fas fa-times"></i></a>
+                
+              </div>
+            </div>
+          </td>
+        </tr>
+
+    </tbody>
+  </table>
+
+</div>
