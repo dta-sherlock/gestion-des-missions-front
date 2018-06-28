@@ -4,7 +4,7 @@ import { Nature } from '../entity/Nature';
 import { PATH_MISSIONS } from '../constantes';
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import FormulaireMissionsServiceService from '../services/formulaireMissionService/formulaire-missions.service';
+import  { FormulaireMissionsServiceService } from '../services/formulaireMissionService/formulaire-missions.service';
 import { isGoodDateDebutValidator, isGoodDateFinValidator, isEmptyValidator } from '../Validator/Mission/MissionValidator';
 import { RecupNatureService } from '../services/recupNatureService/recup-nature.service';
 
@@ -13,11 +13,11 @@ import { RecupNatureService } from '../services/recupNatureService/recup-nature.
   templateUrl: './formulaire-missions.component.html',
   styleUrls: ['./formulaire-missions.component.css'],
   providers: [
-    RecupNatureService
+    RecupNatureService, FormulaireMissionsServiceService
   ]
 })
 export class FormulaireMissionsComponent implements OnInit {
-  private listeNatures: Array<Nature> = new Array<Nature>();
+  listeNatures: Array<Nature> = new Array<Nature>();
   natureInitiale: Nature = new Nature("tst", null, null, null, null, null, null, null, null);
   mission: Mission = new Mission(new Date(), new Date(), this.natureInitiale, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
   
@@ -31,7 +31,7 @@ export class FormulaireMissionsComponent implements OnInit {
 
   missionForm: FormGroup;
 
-  constructor( private missionService: FormulaireMissionsServiceService, private natureService: RecupNatureService, fb: FormBuilder, private router: Router) {
+  constructor(private natureService: RecupNatureService,  fb: FormBuilder, private router: Router, private missionService: FormulaireMissionsServiceService) {
 
     this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]),
       this.dateFinCtrl = fb.control('', [Validators.required, isGoodDateFinValidator])

@@ -4,8 +4,8 @@ import { Nature } from '../entity/Nature';
 import { PATH_MISSIONS } from '../constantes';
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import FormulaireMissionsServiceService from '../services/formulaireMissionService/formulaire-missions.service';
-import { isGoodDateDebutValidator, isEmptyValidator, isGoodDateFinValidator} from '../Validator/Mission/MissionValidator';
+import { FormulaireMissionsServiceService } from '../services/formulaireMissionService/formulaire-missions.service';
+import { isGoodDateDebutValidator, isGoodDateFinValidator, isEmptyValidator } from '../Validator/Mission/MissionValidator';
 import { RecupNatureService } from '../services/recupNatureService/recup-nature.service';
 
 @Component({
@@ -13,12 +13,12 @@ import { RecupNatureService } from '../services/recupNatureService/recup-nature.
   templateUrl: './modifier-mission.component.html',
   styleUrls: ['./modifier-mission.component.css'],
   providers: [
-   RecupNatureService, FormulaireMissionsServiceService
+    RecupNatureService, FormulaireMissionsServiceService
   ]
 })
 export class ModifierMissionComponent implements OnInit {
 
-  private listeNatures: Array<Nature> = new Array<Nature>();
+  listeNatures: Array<Nature> = new Array<Nature>();
   natureInitiale: Nature = new Nature("tst", null, null, null, null, null, null, null, null);
   mission: Mission = new Mission(new Date(), new Date(), this.natureInitiale, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
   newMission: Mission = new Mission(new Date(), new Date(), this.natureInitiale, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
@@ -85,7 +85,7 @@ export class ModifierMissionComponent implements OnInit {
     });
     this.missionService.getMissionById(this.mission.id).toPromise().then(m => this.mission = m);
     this.missionService.getMissionById(this.mission.id).toPromise().then(m => this.newMission = m);
-  console.log(this.mission)
+    console.log(this.mission)
   }
 
 }

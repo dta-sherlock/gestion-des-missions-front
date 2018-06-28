@@ -14,7 +14,7 @@ import { FormulaireNatureServiceService } from '../services/formulaireNatureServ
 })
 export class NatureTableauComponent implements OnInit {
 
-  private listeNatures: Array<Nature> = new Array<Nature>();
+  listeNatures: Array<Nature> = new Array<Nature>();
   nature: Nature = new Nature('', true, true, 0, 0, false, new Date(), 0);
   natureModif: Nature = new Nature(this.nature.nom, this.nature.facturation, this.nature.prime, this.nature.pourcentage, this.nature.plafond, this.nature.plafondDepassable, this.nature.debutValidite, this.nature.tjm, this.nature.finValidite)
 
