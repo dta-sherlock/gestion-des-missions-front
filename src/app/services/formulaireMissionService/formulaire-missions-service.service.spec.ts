@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import  FormulaireMissionsServiceService  from './formulaire-missions-service.service';
+import  FormulaireMissionsServiceService  from './formulaire-missions.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('FormulaireMissionsServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FormulaireMissionsServiceService]
+      providers: [FormulaireMissionsServiceService],
+      imports: [HttpClientTestingModule]
     });
   });
 

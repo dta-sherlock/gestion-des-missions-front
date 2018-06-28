@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { RecupNatureService } from './recup-nature.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RecupNatureService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RecupNatureService]
+      providers: [RecupNatureService],
+      imports: [HttpClientTestingModule]
     });
   });
 

@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TableauMissionEnAttenteValidationComponent } from './tableau-mission-en-attente-validation.component';
+import { RecupMissionsService } from '../services/recupMissionService/recup-missions.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TableauMissionEnAttenteValidationComponent', () => {
   let component: TableauMissionEnAttenteValidationComponent;
@@ -8,7 +11,9 @@ describe('TableauMissionEnAttenteValidationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableauMissionEnAttenteValidationComponent ]
+      declarations: [ TableauMissionEnAttenteValidationComponent ],
+      providers: [RecupMissionsService],
+      imports: [RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   }));

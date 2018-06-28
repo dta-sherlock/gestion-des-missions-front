@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { FormulaireNatureServiceService } from './formulaire-nature-service.service';
+import { FormulaireNatureServiceService } from './formulaire-nature.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('FormulaireNatureServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FormulaireNatureServiceService]
+      providers: [FormulaireNatureServiceService],
+      imports: [HttpClientTestingModule]
     });
   });
 

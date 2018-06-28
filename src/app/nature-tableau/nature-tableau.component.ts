@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Nature } from '../entity/Nature';
-import { PATH_NATURE, PATH_MISSIONS } from '../constantes';
+import { PATH_MISSIONS } from '../constantes';
 import { RecupNatureService } from '../services/recupNatureService/recup-nature.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormulaireNatureServiceService } from '../services/formulaireNatureService/formulaire-nature-service.service';
-import { Observable } from 'rxjs';
+import { FormulaireNatureServiceService } from '../services/formulaireNatureService/formulaire-nature.service';
 
 @Component({
   selector: 'app-nature-tableau',
   templateUrl: './nature-tableau.component.html',
-  styleUrls: ['./nature-tableau.component.css']
+  styleUrls: ['./nature-tableau.component.css'],
+  providers:[ RecupNatureService, FormulaireNatureServiceService]
 })
 export class NatureTableauComponent implements OnInit {
 

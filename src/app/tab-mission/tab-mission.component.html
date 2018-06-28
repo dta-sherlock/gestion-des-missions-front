@@ -1,75 +1,99 @@
 <div class="container-fluid">
 
   <h2 class="text-center" id="titre_mission">Gestion des missions</h2>
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">Date de début</th>
-          <th scope="col">Date de fin</th>
-          <th scope="col">Nature</th>
-          <th scope="col">Départ</th>
-          <th scope="col">Arrivée</th>
-          <th scope="col">Transport</th>
-          <th scope="col">Statut</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Date de début</th>
+        <th scope="col">Date de fin</th>
+        <th scope="col">Nature</th>
+        <th scope="col">Départ</th>
+        <th scope="col">Arrivée</th>
+        <th scope="col">Transport</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
 
-      <tbody>
-        <!-- Remplissage du tableau -->
-        <!-- Si une mission est une 'absence' alors on 
+    <tbody>
+      <!-- Remplissage du tableau -->
+      <!-- Si une mission est une 'absence' alors on 
       n'affiche pas le départ/arrivée/transport 
       et l'icone de suppression -->
-        <tr *ngFor="let mission of listeMissions | async">
-          <td scope="row">{{mission.dateDebut | date:'dd/MM/yyyy'}}</td>
-          <td>{{mission.dateFin | date:'dd/MM/yyyy'}}</td>
-          <td>{{mission.nature.nom}}</td>
-          <td *ngIf="mission.nature.nom==='Absence'; else showDepart">
-            -
-          </td>
-          <ng-template #showDepart>
-            <td>{{mission.villeDeDepart}}</td>
-          </ng-template>
-          <td *ngIf="mission.nature.nom==='Absence'; else showArrivee">
-            -
-          </td>
-          <ng-template #showArrivee>
-            <td>{{mission.villeDArrivee}}</td>
-          </ng-template>
-          <td *ngIf="mission.nature.nom==='Absence'; else showTransport">
-            -
-          </td>
-          <ng-template #showTransport>
-            <td>{{mission.transport}}</td>
-          </ng-template>
-          <td>{{mission.statut}}</td>
-          <td>
-            <div class="row">
-              <div *ngIf="mission.nature.nom!=='Absence'" class="col-6">
-                <button type="button" class="btn btn btn-primary" (click)="suppressionMission(mission)">
-                  <i class="fas fa-trash-alt"></i>
+      <tr *ngFor="let mission of listeMissions; index as index">
+        <td scope="row">{{mission.dateDebut | date:'dd/MM/yyyy'}}</td>
+        <td>{{mission.dateFin | date:'dd/MM/yyyy'}}</td>
+        <td>{{mission.nature.nom}}</td>
+        <td *ngIf="mission.nature.nom==='Absence'; else showDepart">
+          -
+        </td>
+        <ng-template #showDepart>
+          <td>{{mission.villeDeDepart}}</td>
+        </ng-template>
+        <td *ngIf="mission.nature.nom==='Absence'; else showArrivee">
+          -
+        </td>
+        <ng-template #showArrivee>
+          <td>{{mission.villeDArrivee}}</td>
+        </ng-template>
+        <td *ngIf="mission.nature.nom==='Absence'; else showTransport">
+          -
+        </td>
+        <ng-template #showTransport>
+          <td>{{mission.transport}}</td>
+        </ng-template>
+        <td>{{mission.statut}}</td>
+        <td>
+          <div class="row">
+            <div *ngIf="mission.nature.nom!=='Absence'" class="col-6">
+              <input type="hidden" value="{{index}}" #noLigne>
+              <button type="button" class="btn btn btn-primary" data-toggle="modal" data-target="#modalSupprimer" (click)="recup(noLigne.value)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+           </div>
+            <!-- Si le statut est 'Initiale' ou 'Rejetée' on affiche
+              une icone de modification -->
+            <!-- TODO Ajout du test si 'ABSENCE' -->
+            <div class="col-6">
+              <div *ngIf="mission.statut==='INITIALE' || mission.statut==='REJETEE'">
+                <button type="button" class="btn btn btn-primary" (click)="modifierMission(mission)">
+                  <i class="fas fa-edit"></i>
                 </button>
               </div>
-              <!-- Si le statut est 'Initiale' ou 'Rejetée' on affiche
-              une icone de modification -->
-              <!-- TODO Ajout du test si 'ABSENCE' -->
-              <div class="col-6">
-                <div *ngIf="mission.statut==='INITIALE' || mission.statut==='REJETEE'">
-                  <button type="button" class="btn btn btn-primary" (click)="modifierMission(mission)">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                </div>
-                <div *ngIf="mission.nature.nom==='Absence'">
-                  <button type="button" class="btn btn btn-primary" (click)="goToAbsence(mission)">
-                    <i class="fas fa-eye"></i>
-                  </button>
-                </div>
+              <div *ngIf="mission.nature.nom==='Absence'">
+                <button type="button" class="btn btn btn-primary" (click)="goToAbsence(mission)">
+                  <i class="fas fa-eye"></i>
+                </button>
               </div>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal de confirmation de suppression d'une mission -->
+  <div class="modal fade" id="modalSupprimer" tabindex="-1" role="dialog" aria-labelledby="Suppression" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Confirmation de Supression {{mission.villeDeDepart}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!-- Contenu de la modal -->
+          Confirmez-vous la suppression de la mission du {{mission.dateDebut | date:'dd/MM/yyyy'}} au {{mission.dateFin | date:'dd/MM/yyyy'}}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
+          <button class="btn btn-success" data-dismiss="modal" (click)="suppressionMission(mission)">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Bouton d'ajout d'une mission -->
   <div class="row">

@@ -22,8 +22,8 @@
     <div class="row">
       <label class="col-5">Nature : </label>
       <select formControlName="nature" class="form-control col-7" [(ngModel)]="mission.nature">
-        <option value=""></option>
-        <option *ngFor="let nature of listeNatures"> {{nature.nom}} </option>
+          <option>Veuillez sélectionner une nature...</option>
+        <option *ngFor="let nature of listeNatures" > {{nature.nom}} </option>
       </select>
       <div *ngIf="natureCtrl.dirty && natureCtrl.hasError('isEmpty')">
         <p class="text-danger">Veuillez entrer une nature</p>
