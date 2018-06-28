@@ -5,7 +5,7 @@ import { PATH_MISSIONS } from '../constantes';
 import { Mission, Transport, Statut } from '../entity/Mission';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import  { FormulaireMissionsServiceService } from '../services/formulaireMissionService/formulaire-missions.service';
-import { isGoodDateDebutValidator } from '../Validator/Mission/MissionValidator';
+import { isGoodDateDebutValidator, isGoodDateFinValidator, isEmptyValidator } from '../Validator/Mission/MissionValidator';
 import { RecupNatureService } from '../services/recupNatureService/recup-nature.service';
 
 @Component({
@@ -20,8 +20,7 @@ export class FormulaireMissionsComponent implements OnInit {
   listeNatures: Array<Nature> = new Array<Nature>();
   natureInitiale: Nature = new Nature("tst", null, null, null, null, null, null, null, null);
   mission: Mission = new Mission(new Date(), new Date(), this.natureInitiale, "", "", Transport.VOITURE_DE_SERVICE, 0, Statut.INITIAL);
-
-
+  
   dateDebutCtrl: FormControl;
   dateFinCtrl: FormControl;
   natureCtrl: FormControl;
@@ -34,9 +33,9 @@ export class FormulaireMissionsComponent implements OnInit {
 
   constructor(private natureService: RecupNatureService,  fb: FormBuilder, private router: Router, private missionService: FormulaireMissionsServiceService) {
 
-    this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]);
-    this.dateFinCtrl = fb.control('', [Validators.required]);
-    this.natureCtrl = fb.control('', [Validators.required]);
+    this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]),
+      this.dateFinCtrl = fb.control('', [Validators.required, isGoodDateFinValidator])
+    this.natureCtrl = fb.control('', [Validators.required, isEmptyValidator]);
     this.villeDArriveeCtrl = fb.control('', [Validators.required]);
     this.villeDeDepartCtrl = fb.control('', [Validators.required]);
     this.transportCtrl = fb.control('', [Validators.required]);
@@ -68,19 +67,17 @@ export class FormulaireMissionsComponent implements OnInit {
     while (this.listeNatures[i].nom != this.missionForm.value.nature) {
       i = i + 1;
     }
-    this.mission.nature = this.listeNatures[i];
-
+    this.mission.nature=this.listeNatures[i];
     this.missionService.postMission(new Mission(this.mission.dateDebut, this.mission.dateFin, this.mission.nature, this.mission.villeDeDepart, this.mission.villeDArrivee, this.mission.transport, 0, Statut.INITIAL)).subscribe();
     setTimeout(() => {
       this.router.navigate([PATH_MISSIONS]);
     }, 100);
   }
 
-
   setDateDebutFormated(value: string) {
     this.mission.dateDebut = new Date(value);
   }
-
+ 
   setDateFinFormated(value: string) {
     this.mission.dateFin = new Date(value);
   }

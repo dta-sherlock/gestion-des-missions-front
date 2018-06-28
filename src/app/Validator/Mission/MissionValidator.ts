@@ -9,7 +9,7 @@ export function isAfterToday(control :FormControl):boolean {
      if (control.value <= today) {
         return false;
     }
-    else{
+    else {
         return true;
     }
 }
@@ -21,7 +21,7 @@ export function isWeekEnd(control :FormControl){
     if(date.getDay()==6||date.getDay()==0) {
         return false;
     }
-    else{
+    else {
         return true;
     }
 }
@@ -29,8 +29,6 @@ export function isWeekEnd(control :FormControl){
 
 
 /*  TODO :
-
-
 function isHoliday(control:FormControl): boolean{
 
 }
@@ -54,3 +52,24 @@ export function isGoodDateDebutValidator(control: FormControl) {
         return { isGoodDateDebut: true }
     }
 }
+
+export function isGoodDateFinValidator(control: FormControl) {
+    if (isAfterToday(control) && isWeekEnd(control)) {
+       return null
+    }
+    else {
+        return { isGoodDateFin: true }
+        
+    }
+}
+
+export function isEmptyValidator(control:FormControl){
+    if (control.value == "" || control.value==null) {
+        return {isEmpty:true};
+    }
+    else {
+        return null;
+    }
+}
+
+
