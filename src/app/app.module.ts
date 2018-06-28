@@ -37,16 +37,13 @@ import { ModifierMissionComponent } from './modifier-mission/modifier-mission.co
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
-    RouterModule,
   ],
   providers: [
     FormulaireNatureServiceService,
     RecupNatureService,
     RecupMissionsService,
     FormulaireMissionsServiceService,
-    RouterModule,
     RecupManagerMissionService,
-    FormsModule,
   ],
   bootstrap: [AppComponent]
 })
