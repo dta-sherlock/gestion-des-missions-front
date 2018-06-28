@@ -7,8 +7,8 @@ export const PATH_PLANNING_MISSION:string='miision/planning'
 export const PATH_FRAIS: string = "frais";
 export const PATH_PRIMES: string = "primes";
 
-export const API_BASE_URL: string = 'http://localhost:8080/';
-//export const API_BASE_URL: string = 'https://missions-back.cleverapps.io/';
+//export const API_BASE_URL: string = 'http://localhost:8080/';
+export const API_BASE_URL: string = 'https://missions-back.cleverapps.io/';
 export const API_MISSION: string = 'missions';
 export const API_NATURE: string = 'natures';
 

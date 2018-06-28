@@ -6,7 +6,7 @@ import { API_BASE_URL, API_MISSION } from '../../constantes';
 
 
 @Injectable()
-export default class FormulaireMissionsServiceService {
+export class FormulaireMissionsServiceService {
   constructor(private http: HttpClient) { }
 
   // Met à jour une mission via son id
