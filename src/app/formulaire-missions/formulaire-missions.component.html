@@ -1,34 +1,38 @@
 <div class="container">
   <h2>Demande de mission</h2>
   <form (ngSubmit)="handleSubmit()" name="formeAjout" [formGroup]="missionForm">
+
     <div class="row">
       <label class="col-5">Date de début : </label>
-
       <input class="form-control col-7" formControlName="dateDebut" type="date" name="dateDebut" (ngModelChange)="setDateDebutFormated($event)"
         [ngModel]="mission.dateDebut | date:'yyyy-MM-dd'">
-      <div *ngIf="dateDebutCtrl.dirty && dateDebutCtrl.hasError('isGoodDateDebut')">
-        <p class="text-danger">La date n'est pas valide</p>
-      </div>
     </div>
+    <div *ngIf="dateDebutCtrl.dirty && dateDebutCtrl.hasError('isGoodDateDebut')" class="alert alert-danger" role="alert">
+      <p class="offset-5 col-7">La date n'est pas valide</p>
+    </div>
+
     <div class="row">
       <label class="col-5">Date de fin : </label>
       <input class="form-control col-7" formControlName="dateFin" type="date" name="dateFin" (ngModelChange)="setDateFinFormated($event)"
         [ngModel]="mission.dateFin | date:'yyyy-MM-dd'">
-      <div *ngIf="dateFinCtrl.dirty && dateFinCtrl.hasError('isGoodDateFin')">
-        <p class="text-danger">La date n'est pas valide</p>
-      </div>
     </div>
+    <div *ngIf="dateFinCtrl.dirty && dateFinCtrl.hasError('isGoodDateFin')"  class="alert alert-danger" role="alert">
+      <p class="offset-5 col-7">La date n'est pas valide</p>
+    </div>
+
 
     <div class="row">
       <label class="col-5">Nature : </label>
       <select formControlName="nature" class="form-control col-7" [(ngModel)]="mission.nature">
-          <option>Veuillez sélectionner une nature...</option>
-        <option *ngFor="let nature of listeNatures" > {{nature.nom}} </option>
+        <option value="">Veuillez sélectionner une nature...</option>
+        <option *ngFor="let nature of listeNatures"> {{nature.nom}} </option>
       </select>
-      <div *ngIf="natureCtrl.dirty && natureCtrl.hasError('isEmpty')">
-        <p class="text-danger">Veuillez entrer une nature</p>
-      </div>
     </div>
+
+    <div *ngIf="natureCtrl.dirty && natureCtrl.hasError('isEmpty')"  class="alert alert-danger" role="alert">
+      <p class="text-danger">Veuillez entrer une nature</p>
+    </div>
+
     <div class="row">
       <label class="col-5">Ville de départ : </label>
       <input formControlName="villeDeDepart" class="form-control col-7" name="villeDeDepart" [(ngModel)]="mission.villeDeDepart"
