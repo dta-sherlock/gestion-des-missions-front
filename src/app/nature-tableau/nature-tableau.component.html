@@ -39,17 +39,17 @@
 
         <td>
           <div class="row">
-            <div class="col-6">
+            <div class="col-6" *ngIf="nature.nom!=='Conseil' && nature.nom!=='Expertise technique' && nature.nom!=='Formation'">
               <input type="hidden" value="{{index}}" #noLigne>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSupprimer" (click)="recup(noLigne.value)">
                 <i class="fas fa-trash-alt"></i>
               </button>
             </div>
-            <div class="col-6">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditer" (click)="recup(noLigne.value)">
-                <i class="fas fa-edit"></i>
-              </button>
-            </div>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditer" (click)="recup(noLigne.value)">
+              <i class="fas fa-edit"></i>
+            </button>
           </div>
         </td>
       </tr>
