@@ -39,17 +39,19 @@
 
         <td>
           <div class="row">
-            <div class="col-6" *ngIf="nature.nom!=='Conseil' && nature.nom!=='Expertise technique' && nature.nom!=='Formation'">
-              <input type="hidden" value="{{index}}" #noLigne>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSupprimer" (click)="recup(noLigne.value)">
-                <i class="fas fa-trash-alt"></i>
+            <input type="hidden" value="{{index}}" #noLigne>
+            <div class="col-6">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditer" (click)="recup(noLigne.value)">
+                <i class="fas fa-edit"></i>
               </button>
             </div>
-          </div>
-          <div class="col-6">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditer" (click)="recup(noLigne.value)">
-              <i class="fas fa-edit"></i>
-            </button>
+            <div *ngIf="nature.nom!=='Conseil' && nature.nom!=='Expertise technique' && nature.nom!=='Formation'">
+              <div class="col-6">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSupprimer" (click)="recup(noLigne.value)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </td>
       </tr>
@@ -92,7 +94,7 @@
 
             <div class="row">
               <label class="col-5">Facturée : </label>
-              <select name="facturation" formControlName="facturation" class="form-control col-7" [ngModel]="nature.facturation">
+              <select name="facturation" formControlName="facturation" class="form-control col-7" [(ngModel)]="nature.facturation">
                 <option value="true"> Oui </option>
                 <option value="false"> Non </option>
               </select>
