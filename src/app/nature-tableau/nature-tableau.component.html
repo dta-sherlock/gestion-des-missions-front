@@ -17,6 +17,7 @@
     <tbody>
       <!-- Remplissage du tableau -->
       <tr *ngFor="let nature of listeNatures,index as index">
+          <script>console.log(nature)</script>
         <td>{{nature.nom | titlecase}}</td>
 
         <td *ngIf="nature.facturation; else nonFacturee">
@@ -112,7 +113,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-danger" data-dismiss="modal">Annuler</button>
-          <button class="btn btn-success" data-dismiss="modal" type="submit" (click)="ajouterNature()" [disabled]="natureForm.invalid">Valider</button>
+          <button class="btn btn-success" data-dismiss="modal" type="submit" (click)="ajouterNature(nature)" [disabled]="natureForm.invalid">Valider</button>
         </div>
       </div>
     </div>

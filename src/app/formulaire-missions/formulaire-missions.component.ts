@@ -33,8 +33,8 @@ export class FormulaireMissionsComponent implements OnInit {
 
   constructor(private natureService: RecupNatureService,  fb: FormBuilder, private router: Router, private missionService: FormulaireMissionsServiceService) {
 
-    this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]),
-      this.dateFinCtrl = fb.control('', [Validators.required, isGoodDateFinValidator])
+    this.dateDebutCtrl = fb.control('', [Validators.required, isGoodDateDebutValidator]);
+    this.dateFinCtrl = fb.control('', [Validators.required, isGoodDateFinValidator]);
     this.natureCtrl = fb.control('', [Validators.required, isEmptyValidator]);
     this.villeDArriveeCtrl = fb.control('', [Validators.required]);
     this.villeDeDepartCtrl = fb.control('', [Validators.required]);

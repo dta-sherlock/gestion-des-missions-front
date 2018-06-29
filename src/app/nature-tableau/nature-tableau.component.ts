@@ -54,10 +54,11 @@ export class NatureTableauComponent implements OnInit {
   }
 
 
-  ajouterNature() {
-    console.log('Post: ', this.nature);
-    this.listeNatures.push(this.nature)
-    this.formulaireNatureService.postNature(new Nature(this.nature.nom, this.nature.facturation, this.nature.prime, this.nature.pourcentage, this.nature.plafond, this.nature.plafondDepassable, this.nature.debutValidite, this.nature.tjm, this.nature.finValidite)).subscribe();
+  ajouterNature(nature:Nature) {
+    console.log('Post: ', nature);
+    this.listeNatures.push(nature);
+    console.log(nature)
+    this.formulaireNatureService.postNature(new Nature(nature.nom, nature.facturation, nature.prime, nature.pourcentage, nature.plafond, nature.plafondDepassable, nature.debutValidite, nature.tjm, nature.finValidite)).subscribe();
   }
 
   // Supprimer une nature
@@ -72,7 +73,6 @@ export class NatureTableauComponent implements OnInit {
     nature.id = ancienneNature.id;
     console.log('Update', nature);
     this.formulaireNatureService.put(new Nature(nature.nom, nature.facturation, nature.prime, nature.pourcentage, nature.plafond, nature.plafondDepassable, nature.debutValidite, nature.tjm, nature.finValidite), nature.id).subscribe()
-    console.log(nature.facturation, nature.prime)
     this.listeNatures[this.listeNatures.indexOf(ancienneNature)] = nature;
 
   }
